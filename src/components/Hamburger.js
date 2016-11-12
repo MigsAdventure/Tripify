@@ -36,7 +36,7 @@ export default class Hamburger extends Component {
             id='poop'
             onTouchTap={this.handleClose}
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-            style={{ backgroundColor: 'red;', minHeight: '40px' }}
+            style={{ backgroundColor: '#2b98f0', minHeight: '40px' }}
 
           />
           <MenuItem onTouchTap={this.handleClose}><i class="material-icons">&#xE88A;</i>Home</MenuItem>
