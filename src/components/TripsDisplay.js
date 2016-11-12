@@ -9,13 +9,16 @@ export default class TripsDisplay extends Component {
 
   render () {
     let { results } = this.props;
-    console.log('results:', results);
     return (
       <div className='container-fluid'>
         {
           results.trips.map(trip => {
+            //div needs a unique id and an onclick for a different route
             return(
-              <h2>{trip.location}</h2>
+              <div>
+                <img src={trip.image} alt=""/>
+                <h2>{trip.location}</h2>
+              </div>
             )
           })
         }

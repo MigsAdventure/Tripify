@@ -1,3 +1,13 @@
 body {
   text-align: center;
 }
+
+img{
+  width:100%;
+}
+
+label {
+  background: blue;
+  width: 100%;
+  color: white;
+}
