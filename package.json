@@ -46,6 +46,7 @@
     "redux-thunk": "^2.1.0",
     "resolve-url-loader": "^1.6.0",
     "sass-loader": "^4.0.2",
+    "semantic-ui-react": "^0.60.4",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
