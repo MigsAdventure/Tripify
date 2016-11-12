@@ -3,12 +3,10 @@ import { connect } from  'react-redux';
 // import {  } from '../actions/FirebaseActions';
 
 
-export default class Layout extends Component {
-  render() {
+export default function Layout(props) {
     return (
       <div>
-
+        {props.children}
       </div>
     )
-  }
 }
