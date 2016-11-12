@@ -12,7 +12,6 @@ import { fetchSearch } from '../actions/ApiActions';
 export default class SearchForm extends Component {
 
   submitForm = (e) => {
-    console.log('e:', e);
     e.preventDefault();
     const searchPackage = {
       trip: this.tripsInput.value,

@@ -9,7 +9,6 @@ export default class TripsDisplay extends Component {
 
   render () {
     let { results } = this.props;
-    console.log('results:', results);
     return (
       <div className='container-fluid'>
         {
