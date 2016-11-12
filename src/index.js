@@ -7,6 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // import {  } from './actions/FirebaseActions';
 import HomePage from './components/HomePage';
+import ResultsPage from './components/ResultsPage';
 
 import store from './store';
 
@@ -20,6 +21,7 @@ render(
     <Router history={browserHistory} >
       <Route path="/" component={Layout} >
         <IndexRoute component={HomePage} />
+        <Route path="search-results" component={ResultsPage} />
       </Route>
     </Router>
   </Provider>

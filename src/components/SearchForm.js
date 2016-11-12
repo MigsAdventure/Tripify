@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Input } from 'semantic-ui-react'
+import { browserHistory } from 'react-router';
 import { fetchSearch } from '../actions/ApiActions';
 
 @connect(null, dispatch => ({
@@ -12,20 +12,22 @@ import { fetchSearch } from '../actions/ApiActions';
 export default class SearchForm extends Component {
 
   submitForm = (e) => {
+    console.log('e:', e);
     e.preventDefault();
     const searchPackage = {
       trip: this.tripsInput.value,
       location: this.locationInput.value,
     };
     this.props.fetchSearchResults(searchPackage);
+    browserHistory.push('/search-results');
   }
 
   render() {
     return (
       <form onSubmit={this.submitForm} >
-        <Input size="large" icon="search" type="text" placeholder="Search Trips..." ref={(input) => { this.tripsInput = input; }} />
-        <Input size="large" icon="search" type="text" placeholder="At Location..." ref={(input) => { this.locationInput = input; }} />
-        <button className="btn btn-primary">Search</button>
+        <input size="large" icon="search" type="text" placeholder="Search Trips..." ref={(input) => { this.tripsInput = input; }} />
+        <input size="large" icon="search" type="text" placeholder="At Location..." ref={(input) => { this.locationInput = input; }} />
+        <button className="btn btn-primary" >Search</button>
       </form>
     );
   }
