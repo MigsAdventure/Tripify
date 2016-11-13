@@ -6,9 +6,10 @@ import Layout from './components/Layout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // import {  } from './actions/FirebaseActions';
+
 import HomePage from './components/HomePage';
 import ResultsPage from './components/ResultsPage';
-
+import { initAuth } from './actions/FirebaseActions';
 import store from './store';
 
 // Needed for onTouchTap
@@ -16,15 +17,17 @@ import store from './store';
 injectTapEventPlugin();
 
 render(
-<MuiThemeProvider >
-  <Provider store={store}>
-    <Router history={browserHistory} >
-      <Route path="/" component={Layout} >
-        <IndexRoute component={HomePage} />
-        <Route path="search-results" component={ResultsPage} />
-      </Route>
-    </Router>
-  </Provider>
-</MuiThemeProvider>,
+  <MuiThemeProvider >
+    <Provider store={store}>
+      <Router history={browserHistory} >
+        <Route path="/" component={Layout} >
+          <IndexRoute component={HomePage} />
+          <Route path="search-results" component={ResultsPage} />
+        </Route>
+      </Router>
+    </Provider>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );
+
+initAuth(store.dispatch);

@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-// Initialize Firebase
+// INIT FIREBASE
 const config = {
   apiKey: 'AIzaSyCaWpX2l-1xUmYGXzWPTyYONs08LiwHLao',
   authDomain: 'tripify-a5149.firebaseapp.com',
@@ -8,5 +8,7 @@ const config = {
   storageBucket: 'tripify-a5149.appspot.com',
   messagingSenderId: '895071215351',
 };
-export const app = firebase.initializeApp(config);
-export const database = app.database();
+
+export const firebaseApp = firebase.initializeApp(config);
+export const firebaseDb = firebaseApp.database();
+export const firebaseAuth = firebaseApp.auth();
