@@ -1,5 +1,15 @@
-body {
+
+#root,html, body {
   text-align: center;
+  height: 100%;
+}
+
+body {
+  font-size: 1.6em;
+}
+
+.mainDiv {
+  height: 100% !important;
 }
 
 img{
@@ -7,7 +17,179 @@ img{
 }
 
 label {
-  background: blue;
+  background: #2196f3;
   width: 100%;
   color: white;
+}
+
+.tripsDisplayContainer {
+  padding: 1em;
+}
+
+.ratingIcon {
+  position: relative;
+  height:2em;
+  width:2em;
+}
+
+.bar {
+  background: #2196f3;
+  text-align: right;
+  height:2.5em;
+}
+
+.hamburgerContainer {
+  position: relative;
+  top:0;
+  height: 100%;
+  overflow:hidden;
+}
+
+.backBtnContainer button {
+  background-color: transparent;
+  border:none;
+  height: 100%;
+}
+
+.hamburgerBtn {
+  color:white !important;
+  background-color:transparent !important;
+  box-shadow: none !important;
+}
+
+.hamburgerBtn  button {
+  background-color:transparent !important;
+}
+
+.material-icons {
+  font-size: 200%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.homeBg {
+  width:100%;
+  height:100%;
+  background-image: url('/assets/map.png');
+  background-position: 78em 36em;
+  transition: all;
+  animation: circleBg 30s infinite ease;
+}
+
+@keyframes circleBg {
+  20% {
+    background-position: 70em 40em;
+    filter:blur(1px);
+  }
+  40% {
+    background-position: 65em 36em;
+    filter:blur(2px);
+  }
+  60% {
+    background-position: 61em 28em;
+    filter:blur(1px);
+  }
+  80% {
+    background-position: 70em 24em;
+    filter:blur(1.5px);
+  }
+
+  100% {
+    background-position: 78em 36em;
+    filter:blur(0.5px);
+
+  }
+}
+
+.searchForm {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+.form-control {
+  margin:1em auto;
+  font-size: 0.9em;
+}
+
+.homeTopHalfContainer {
+  height:60%;
+}
+
+.homeTopHalf {
+  position: relative;
+  height: 100%;
+}
+
+.backBtnContainer {
+  display: inline-block;
+  position: absolute;
+  top:0;
+  left:1em;
+  height:2.5em;
+  color:white;
+}
+
+
+@media only screen and (min-width:600px) and (min-height:400px) {
+  body {
+    font-size: 2.5em;
+  }
+
+  .material-icons {
+    font-size: 150%;
+  }
+
+  .bar {
+    height:1.5em;
+  }
+
+  .form-control {
+    padding:1em;
+  }
+
+  .backBtnContainer {
+    height: 1.5em;
+  }
+
+  .btn-primary {
+    font-size: 1em;
+  }
+
+}
+
+
+@media only screen and (min-width:800px) {
+
+}
+
+@media only screen and (min-width:1024px) {
+  body {
+    font-size:2.2em;
+  }
+}
+
+@media only screen and (min-width:1366px) {
+  .bar {
+    height:2em;
+  }
+}
+
+@media only screen and (min-width:1600px) {
+  body {
+    font-size: 4em;
+  }
+  .bar {
+    height:2.5em;
+  }
+
+  .hamburgerBtn button {
+    vertical-align: bottom;
+  }
+
 }

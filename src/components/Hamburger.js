@@ -45,13 +45,13 @@ export default class Hamburger extends Component {
     const { showSignIn } = this.state;
     const { signOut, loggedIn, user } = this.props;
     return (
-      <div>
+      <div className='hamburgerContainer col-xs-3 col-xs-offset-9'>
         <SignIn
           show={showSignIn}
           toggle={this.toggleSignIn}
           {...this.props}
         />
-        <RaisedButton onTouchTap={this.handleToggle}>
+        <RaisedButton className="hamburgerBtn" onTouchTap={this.handleToggle}>
           <i className="material-icons">menu</i>
         </RaisedButton>
         <Drawer

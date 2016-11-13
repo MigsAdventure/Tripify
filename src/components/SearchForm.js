@@ -23,9 +23,9 @@ export default class SearchForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.submitForm} >
-        <input size="large" icon="search" type="text" placeholder="Search Trips..." ref={(input) => { this.tripsInput = input; }} />
-        <input size="large" icon="search" type="text" placeholder="At Location..." ref={(input) => { this.locationInput = input; }} />
+      <form onSubmit={this.submitForm} className='searchForm col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-lg-4 col-offset-lg-4'>
+        <input className="form-control" size="large" icon="search" type="text" placeholder="Search Trips..." ref={(input) => { this.tripsInput = input; }} />
+        <input className="form-control" size="large" icon="search" type="text" placeholder="At Location..." ref={(input) => { this.locationInput = input; }} />
         <button className="btn btn-primary" >Search</button>
       </form>
     );

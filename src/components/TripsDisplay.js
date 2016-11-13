@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import { Rating } from 'semantic-ui-react';
 
 export default class TripsDisplay extends Component {
   constructor() {
@@ -10,14 +11,15 @@ export default class TripsDisplay extends Component {
   render () {
     let { results } = this.props;
     return (
-      <div className='container-fluid'>
+      <div className='container-fluid tripsDisplayContainer'>
         {
-          results.trips.map(trip => {
-            //div needs a unique id and an onclick for a different route
+          results.data.map(trip => {
             return (
-              <div>
-                <img src={trip.icon} alt=""/>
-                <h2>{trip.name}</h2>
+            // image needs another call from the backend
+              <div key={trip.id} className='col-xs-6 col-sm-4 col-md-3 col-lg-2' >
+                <img src={trip.icon} />
+                <Rating icon='star' size="huge" defaultRating={trip.rating} maxRating={5} />
+                <h4>{trip.name}</h4>
               </div>
             );
           })

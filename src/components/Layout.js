@@ -5,8 +5,10 @@ import Hamburger from './Hamburger'
 
 export default function Layout(props) {
     return (
-      <div>
-        <Hamburger />
+      <div className='mainDiv'>
+        <div className='bar'>
+          <Hamburger />
+        </div>
         {props.children}
       </div>
     )
