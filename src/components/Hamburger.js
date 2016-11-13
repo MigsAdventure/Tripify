@@ -3,54 +3,95 @@ import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton'
-import NavigationClose from 'material-ui/svg-icons/navigation/close'
+import IconButton from 'material-ui/IconButton';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import { connect } from 'react-redux';
+
+import * as FirebaseActions from '../actions/FirebaseActions';
+import SignIn from './SignIn';
+
+@connect(state => ({
+  loggedIn: state.auth.authenticated,
+  user: state.auth.user,
+}), dispatch => ({
+  signOut() {
+    dispatch(FirebaseActions.signOut());
+  },
+  signInWithGoogle() {
+    dispatch(FirebaseActions.signInWithGoogle());
+  },
+}))
 
 export default class Hamburger extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {open: false};
+    this.state = {
+      open: false,
+      showSignIn: false,
+    };
   }
 
-  handleToggle = () => this.setState({open: !this.state.open});
+  handleToggle = () => this.setState({ open: !this.state.open });
 
-  handleClose = () => this.setState({open: false});
+  handleClose = () => this.setState({ open: false });
+
+  toggleSignIn = () => {
+    this.handleClose();
+    this.setState({ showSignIn: !this.state.showSignIn });
+  }
 
   render() {
+    const { showSignIn } = this.state;
+    const { signOut, loggedIn, user } = this.props;
     return (
       <div>
-        <RaisedButton
-          onTouchTap={this.handleToggle}
-        ><i class="material-icons">menu</i>
+        <SignIn
+          show={showSignIn}
+          toggle={this.toggleSignIn}
+          {...this.props}
+        />
+        <RaisedButton onTouchTap={this.handleToggle}>
+          <i className="material-icons">menu</i>
         </RaisedButton>
         <Drawer
-
           docked={false}
           width={200}
           open={this.state.open}
-          onRequestChange={(open) => this.setState({open})}
+          onRequestChange={open => this.setState({ open })}
         >
           <AppBar
-            title='Tripify'
-            id='poop'
+            title={loggedIn ? `Hi, ${user.displayName}` : 'Tripify'}
+            id="poop"
             onTouchTap={this.handleClose}
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             style={{ backgroundColor: '#2b98f0', minHeight: '40px' }}
-
           />
-          <MenuItem onTouchTap={this.handleClose}><i class="material-icons">&#xE88A;</i>Home</MenuItem>
-          <MenuItem onTouchTap={this.handleClose}><i class="material-icons">&#xE876;</i>Sign In</MenuItem>
-          <MenuItem onTouchTap={this.handleClose}><i class="material-icons">&#xE55E;</i>Current Trip</MenuItem>
-          <MenuItem onTouchTap={this.handleClose}><i class="material-icons">&#xE55B;</i>My Trips</MenuItem>
-          <MenuItem onTouchTap={this.handleClose}><i class="material-icons">&#xE8A6;</i>My Profiles</MenuItem>
-          <MenuItem onTouchTap={this.handleClose}><i class="material-icons">&#xE14F;</i>Sign Up</MenuItem>
-          <MenuItem onTouchTap={this.handleClose}><i class="material-icons">block</i>Sign Up</MenuItem>
+          <br />
+          <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE88A;</i>Home</MenuItem>
 
+          {loggedIn ?
+            <div>
+              <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i>Current Trip</MenuItem>
+              <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem>
+              <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE8A6;</i>My Profiles</MenuItem>
+              <MenuItem onTouchTap={signOut}><i className="material-icons">block</i>Sign Out</MenuItem>
+            </div>
+          : null}
 
+          {loggedIn ? null : <div>
+            <MenuItem onTouchTap={this.toggleSignIn}><i className="material-icons">&#xE876;</i>Sign In</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE14F;</i>Sign Up</MenuItem>
+          </div>}
 
         </Drawer>
       </div>
     );
   }
 }
+
+Hamburger.propTypes = {
+  signOut: React.PropTypes.func,
+  loggedIn: React.PropTypes.bool,
+  user: React.PropTypes.object,
+};
