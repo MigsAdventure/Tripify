@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 import * as FirebaseActions from '../actions/FirebaseActions';
 import SignIn from './SignIn';
@@ -40,6 +41,13 @@ export default class Hamburger extends Component {
     this.handleClose();
     this.setState({ showSignIn: !this.state.showSignIn });
   }
+  goToProfile() {
+    browserHistory.push('/profile')
+  }
+
+  goHome() {
+    browserHistory.push('/')
+  }
 
   render() {
     const { showSignIn } = this.state;
@@ -68,13 +76,13 @@ export default class Hamburger extends Component {
             style={{ backgroundColor: '#2b98f0', minHeight: '40px' }}
           />
           <br />
-          <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE88A;</i>Home</MenuItem>
+          <MenuItem onTouchTap={this.goHome}><i className="material-icons">&#xE88A;</i>Home</MenuItem>
 
           {loggedIn ?
             <div>
               <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i>Current Trip</MenuItem>
               <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE8A6;</i>My Profiles</MenuItem>
+              <MenuItem onTouchTap={this.goToProfile}><i className="material-icons">&#xE8A6;</i>My Profile</MenuItem>
               <MenuItem onTouchTap={signOut}><i className="material-icons">block</i>Sign Out</MenuItem>
             </div>
           : null}
