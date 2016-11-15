@@ -193,3 +193,31 @@ label {
   }
 
 }
+
+.navbar-nav {
+  font-size: 20px !important;
+  color: white !important;
+}
+
+.bigScreen {
+  display: none;
+}
+
+@media (min-width: 700px) {
+  .bigScreen {
+    display: block;
+  }
+
+  li > div > span> div > div {
+    color: white !important;
+  }
+
+  .navbar-header a, .nav a {
+    color:white;
+  }
+}
+
+.user  {
+  color: white !important;
+  padding-right: 30px !important;
+}
