@@ -221,3 +221,8 @@ label {
   color: white !important;
   padding-right: 30px !important;
 }
+
+.mapRef {
+  height: 300px;
+  width: 800px;
+}

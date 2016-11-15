@@ -9,6 +9,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import ProfilePage from './components/ProfilePage'
 import HomePage from './components/HomePage';
 import ResultsPage from './components/ResultsPage';
+import TripsUnderWay from './components/TripsUnderWay';
 import { initAuth } from './actions/FirebaseActions';
 import store from './store';
 
@@ -23,7 +24,8 @@ render(
         <Route path="/" component={Layout} >
           <IndexRoute component={HomePage} />
           <Route path="search-results" component={ResultsPage} />
-          <Route path="/profile" component={ ProfilePage} />
+          <Route path="/profile" component={ProfilePage} />
+          <Route path="current-trip" component={TripsUnderWay} />
         </Route>
       </Router>
     </Provider>

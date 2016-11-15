@@ -6,7 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 import * as FirebaseActions from '../actions/FirebaseActions';
 import SignIn from './SignIn';
@@ -58,8 +58,8 @@ export default class Hamburger extends Component {
         (
           <div>
             <ul className="nav navbar-nav navbar-left">
-              <li><MenuItem >Home</MenuItem></li>
-              <li><MenuItem onTouchTap={this.handleClose}>Current Trip</MenuItem></li>
+              <li><MenuItem><Link to="/">Home</Link></MenuItem></li>
+              <li><MenuItem onTouchTap={this.handleClose}><Link to="/current-trip">Current Trip</Link></MenuItem></li>
               <li><MenuItem onTouchTap={this.handleClose}>My Trips</MenuItem></li>
               <li><MenuItem onTouchTap={this.handleClose}>My Profiles</MenuItem></li>
               <li><MenuItem onTouchTap={signOut}>Sign Out</MenuItem></li>
@@ -70,67 +70,66 @@ export default class Hamburger extends Component {
           </div>
 
         )
-    } else {
-      signLi =
-      (
+     } else {
+       signLi =
+       (
         <ul className="nav navbar-nav">
-          <li><MenuItem>Home</MenuItem></li>
+          <li><MenuItem><Link to="/">Home</Link></MenuItem></li>
           <li><MenuItem>Sign Up</MenuItem></li>
           <li><MenuItem onTouchTap={this.toggleSignIn}>Sign In</MenuItem></li>
         </ul>
-      )
-    }
+       )
+     }
     return (
-     <div className='bar'>
-       <SignIn
-         show={showSignIn}
-         toggle={this.toggleSignIn}
-         {...this.props}
-       />
-       <div className="bigScreen">
-         <div className="navbar-header">
-           <a className="navbar-brand" href="#">Tripify</a>
-         </div>
-         {signLi}
-       </div>
-       <div className='hamburgerContainer col-xs-3 col-xs-offset-9'>
+      <div className="bar">
+        <SignIn
+          show={showSignIn}
+          toggle={this.toggleSignIn}
+          {...this.props}
+        />
+        <div className="bigScreen">
+          <div className="navbar-header">
+            <a className="navbar-brand" href="#">Tripify</a>
+          </div>
+          {signLi}
+        </div>
+        <div className='hamburgerContainer col-xs-3 col-xs-offset-9'>
 
-         <RaisedButton className="hamburgerBtn" onTouchTap={this.handleToggle}>
-           <i className="material-icons">menu</i>
-         </RaisedButton>
-         <Drawer
-           docked={false}
-           width={200}
-           open={this.state.open}
-           onRequestChange={open => this.setState({ open })}
-         >
-           <AppBar
-             title={loggedIn ? `Hi, ${user.displayName}` : 'Tripify'}
-             id="poop"
-             onTouchTap={this.handleClose}
-             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-             style={{ backgroundColor: '#2b98f0', minHeight: '40px' }}
-           />
-           <br />
-           <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE88A;</i>Home</MenuItem>
-           
+          <RaisedButton className="hamburgerBtn" onTouchTap={this.handleToggle}>
+            <i className="material-icons">menu</i>
+          </RaisedButton>
+          <Drawer
+            docked={false}
+            width={200}
+            open={this.state.open}
+            onRequestChange={open => this.setState({ open })}
+          >
+            <AppBar
+              title={loggedIn ? `Hi, ${user.displayName}` : 'Tripify'}
+              id="poop"
+              onTouchTap={this.handleClose}
+              iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+              style={{ backgroundColor: '#2b98f0', minHeight: '40px' }}
+            />
+            <br />
+            <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE88A;</i><Link to="/">Home</Link></MenuItem>
 
-           {loggedIn ?
-             <div>
-               <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i>Current Trip</MenuItem>
-               <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem>
-               <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE8A6;</i>My Profiles</MenuItem>
-               <MenuItem onTouchTap={signOut}><i className="material-icons">block</i>Sign Out</MenuItem>
-             </div>
-           : null}
+            {loggedIn ?
+              <div>
+                <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i><Link to="/current-trip">Current Trip</Link></MenuItem>
+                <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem>
+                <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE8A6;</i>My Profiles</MenuItem>
+                <MenuItem onTouchTap={signOut}><i className="material-icons">block</i>Sign Out</MenuItem>
+              </div>
+            : null}
 
-           {loggedIn ? null : <div>
-             <MenuItem onTouchTap={this.toggleSignIn}><i className="material-icons">&#xE876;</i>Sign In</MenuItem>
-             <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE14F;</i>Sign Up</MenuItem>
-           </div>}
-         </Drawer>
-       </div>
-     </div>
+            {loggedIn ? null : <div>
+              <MenuItem onTouchTap={this.toggleSignIn}><i className="material-icons">&#xE876;</i>Sign In</MenuItem>
+              <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE14F;</i>Sign Up</MenuItem>
+            </div>}
+          </Drawer>
+        </div>
+      </div>
     );
   }
 }
