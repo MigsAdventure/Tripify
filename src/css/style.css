@@ -6,6 +6,10 @@
 
 body {
   font-size: 1.6em;
+  min-width:320px;
+  min-height:320px;
+  max-width:2200px;
+  margin: auto;
 }
 
 .mainDiv {
@@ -138,7 +142,7 @@ label {
 
 @media only screen and (min-width:600px) and (min-height:400px) {
   body {
-    font-size: 2.5em;
+    font-size: 2.2em;
   }
 
   .material-icons {
@@ -163,6 +167,27 @@ label {
 
 }
 
+.myTripsMainContainer {
+  padding: 0;
+  height: 100%;
+}
+
+.myTripsNavbar {
+  margin: auto;
+  background: #2196f3;
+  width: 100%;
+  color: white;
+  padding: 1em 0;
+  position: absolute;
+  bottom:0;
+}
+
+.myTripsNavItem:hover {
+  color:black;
+  background-color: sky-blue;
+
+}
+
 
 @media only screen and (min-width:800px) {
 
@@ -170,7 +195,7 @@ label {
 
 @media only screen and (min-width:1024px) {
   body {
-    font-size:2.2em;
+    font-size:2em;
   }
 }
 
@@ -182,10 +207,10 @@ label {
 
 @media only screen and (min-width:1600px) {
   body {
-    font-size: 4em;
+    font-size: 3.8em;
   }
   .bar {
-    height:2.5em;
+    height:2.4em;
   }
 
   .hamburgerBtn button {

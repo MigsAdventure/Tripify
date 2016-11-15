@@ -5,8 +5,10 @@ import { Provider }  from 'react-redux';
 import Layout from './components/Layout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-// import {  } from './actions/FirebaseActions';
+
 import ProfilePage from './components/ProfilePage'
+import MyTripsPage from './components/MyTripsPage';
+
 import HomePage from './components/HomePage';
 import ResultsPage from './components/ResultsPage';
 import TripsUnderWay from './components/TripsUnderWay';
@@ -26,6 +28,7 @@ render(
           <Route path="search-results" component={ResultsPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="current-trip" component={TripsUnderWay} />
+          <Route path="/my-trips" component={MyTripsPage}></Route>
         </Route>
       </Router>
     </Provider>

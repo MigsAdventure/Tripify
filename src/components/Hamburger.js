@@ -95,6 +95,7 @@ export default class Hamburger extends Component {
         </div>
         <div className='hamburgerContainer col-xs-3 col-xs-offset-9'>
 
+
           <RaisedButton className="hamburgerBtn" onTouchTap={this.handleToggle}>
             <i className="material-icons">menu</i>
           </RaisedButton>
@@ -116,8 +117,8 @@ export default class Hamburger extends Component {
 
             {loggedIn ?
               <div>
-                <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i><Link to="/current-trip">Current Trip</Link></MenuItem>
-                <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem>
+                <Link to="/current-trip"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i>Current Trip</MenuItem></Link>
+                <Link to="/my-trips"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem></Link>
                 <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE8A6;</i>My Profiles</MenuItem>
                 <MenuItem onTouchTap={signOut}><i className="material-icons">block</i>Sign Out</MenuItem>
               </div>
