@@ -60,8 +60,8 @@ export default class Hamburger extends Component {
             <ul className="nav navbar-nav navbar-left">
               <li><MenuItem><Link to="/">Home</Link></MenuItem></li>
               <li><MenuItem onTouchTap={this.handleClose}><Link to="/current-trip">Current Trip</Link></MenuItem></li>
-              <li><MenuItem onTouchTap={this.handleClose}>My Trips</MenuItem></li>
-              <li><MenuItem onTouchTap={this.handleClose}>My Profiles</MenuItem></li>
+              <li><MenuItem onTouchTap={this.handleClose}><Link to="/my-trips">My Trips</Link></MenuItem></li>
+              <li><MenuItem onTouchTap={this.handleClose}><Link to="/profile">My Profiles</Link></MenuItem></li>
               <li><MenuItem onTouchTap={signOut}>Sign Out</MenuItem></li>
             </ul>
             <div className="nav navbar-nav navbar-right">
@@ -117,9 +117,9 @@ export default class Hamburger extends Component {
 
             {loggedIn ?
               <div>
-                <Link to="/current-trip"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i>Current Trip</MenuItem></Link>
-                <Link to="/my-trips"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem></Link>
-                <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE8A6;</i>My Profiles</MenuItem>
+                <MenuItem onTouchTap={this.handleClose}><Link to="/current-trip"><i className="material-icons">&#xE55E;</i>Current Trip</Link></MenuItem>
+                <MenuItem onTouchTap={this.handleClose}><Link to="/my-trips"><i className="material-icons">&#xE55B;</i>My Trips</Link></MenuItem>
+                <MenuItem onTouchTap={this.handleClose}><Link to="/profile"><i className="material-icons">&#xE8A6;</i>My Profiles</Link></MenuItem>
                 <MenuItem onTouchTap={signOut}><i className="material-icons">block</i>Sign Out</MenuItem>
               </div>
             : null}
