@@ -8,7 +8,6 @@ export default class SignIn extends Component {
   }
 
   render() {
-    console.log('this.props: ', this.props);
     return (
       <Modal
         show={this.props.show}

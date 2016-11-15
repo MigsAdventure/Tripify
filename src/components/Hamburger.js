@@ -41,13 +41,6 @@ export default class Hamburger extends Component {
     this.handleClose();
     this.setState({ showSignIn: !this.state.showSignIn });
   }
-  goToProfile() {
-    browserHistory.push('/profile')
-  }
-
-  goHome() {
-    browserHistory.push('/')
-  }
 
   render() {
     const { showSignIn } = this.state;
@@ -58,10 +51,10 @@ export default class Hamburger extends Component {
         (
           <div>
             <ul className="nav navbar-nav navbar-left">
-              <li><MenuItem >Home</MenuItem></li>
-              <li><MenuItem onTouchTap={this.handleClose}>Current Trip</MenuItem></li>
+              <li><MenuItem onTouchTap={() => browserHistory.push('/')}>Home</MenuItem></li>
+              <li><MenuItem onTouchTap={() => browserHistory.push('/trip/create')}>Create Trip</MenuItem></li>
               <li><MenuItem onTouchTap={this.handleClose}>My Trips</MenuItem></li>
-              <li><MenuItem onTouchTap={this.handleClose}>My Profiles</MenuItem></li>
+              <li><MenuItem onTouchTap={() => browserHistory.push('/profile')}>My Profile</MenuItem></li>
               <li><MenuItem onTouchTap={signOut}>Sign Out</MenuItem></li>
             </ul>
             <div className="nav navbar-nav navbar-right">
@@ -112,14 +105,14 @@ export default class Hamburger extends Component {
              style={{ backgroundColor: '#2b98f0', minHeight: '40px' }}
            />
            <br />
-           <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE88A;</i>Home</MenuItem>
-           
+           <MenuItem onTouchTap={() => browserHistory.push('/')}><i className="material-icons">&#xE88A;</i>Home</MenuItem>
+
 
            {loggedIn ?
              <div>
-               <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i>Current Trip</MenuItem>
+               <MenuItem onTouchTap={() => browserHistory.push('/trip/create')}><i className="material-icons">&#xE55E;</i>Create Trip</MenuItem>
                <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem>
-               <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE8A6;</i>My Profiles</MenuItem>
+               <MenuItem onTouchTap={() => browserHistory.push('/profile')}><i className="material-icons">&#xE8A6;</i>My Profile</MenuItem>
                <MenuItem onTouchTap={signOut}><i className="material-icons">block</i>Sign Out</MenuItem>
              </div>
            : null}
