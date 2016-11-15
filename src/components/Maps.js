@@ -28,7 +28,7 @@ export default class Maps extends Component {
       navigator.geolocation.getCurrentPosition((position) => {
         pos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
         };
         directionsService.route({
           origin: `${pos.lat}, ${pos.lng}`,
@@ -36,7 +36,7 @@ export default class Maps extends Component {
           waypoints,
           optimizeWaypoints: true,
           travelMode: 'DRIVING',
-        }, function (result, status) {
+        }, (result, status) => {
           if (status === 'OK') {
             directionsDisplay.setDirections(result);
           }
@@ -50,6 +50,6 @@ export default class Maps extends Component {
       <div className="col-sm-12">
         <div  ref="mapRef" className="mapRef"></div>
       </div>
-    )
+    );
   }
 }
