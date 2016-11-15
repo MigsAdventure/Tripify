@@ -22,7 +22,7 @@ export default class TripsDisplay extends Component {
 
                   <Rating icon='star' size="huge" defaultRating={trip.rating} maxRating={5} />
                   <h4>{trip.name}</h4>
-              </div>
+                </div>
             );
           })
         }

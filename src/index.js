@@ -5,7 +5,7 @@ import { Provider }  from 'react-redux';
 import Layout from './components/Layout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-// import {  } from './actions/FirebaseActions';
+import MyTripsPage from './components/MyTripsPage';
 
 import HomePage from './components/HomePage';
 import ResultsPage from './components/ResultsPage';
@@ -23,6 +23,7 @@ render(
         <Route path="/" component={Layout} >
           <IndexRoute component={HomePage} />
           <Route path="search-results" component={ResultsPage} />
+          <Route path="/my-trips" component={MyTripsPage}></Route>
         </Route>
       </Router>
     </Provider>

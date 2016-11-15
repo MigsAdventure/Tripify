@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import * as FirebaseActions from '../actions/FirebaseActions';
 import SignIn from './SignIn';
@@ -73,7 +74,7 @@ export default class Hamburger extends Component {
           {loggedIn ?
             <div>
               <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i>Current Trip</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem>
+              <Link to="/my-trips"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem></Link>
               <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE8A6;</i>My Profiles</MenuItem>
               <MenuItem onTouchTap={signOut}><i className="material-icons">block</i>Sign Out</MenuItem>
             </div>
