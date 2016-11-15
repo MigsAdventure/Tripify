@@ -1,17 +1,17 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider }  from 'react-redux';
-import Layout from './components/Layout';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-// import {  } from './actions/FirebaseActions';
-import ProfilePage from './components/ProfilePage'
+import Layout from './components/Layout';
+import ProfilePage from './components/ProfilePage';
+import MyTripsPage from './components/MyTripsPage';
 import HomePage from './components/HomePage';
 import ResultsPage from './components/ResultsPage';
 import CreateTrip from './components/CreateTrip';
-
+import TripsUnderWay from './components/TripsUnderWay';
 import { initAuth } from './actions/FirebaseActions';
 import store from './store';
 
@@ -20,15 +20,17 @@ import store from './store';
 injectTapEventPlugin();
 
 render(
-  <MuiThemeProvider >
+  <MuiThemeProvider>
     <Provider store={store}>
       <Router history={browserHistory} >
         <Route path="/" component={Layout} >
           <IndexRoute component={HomePage} />
-          <Route path="search-results" component={ResultsPage} />
+          <Route path="/search-results" component={ResultsPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/trip/create" component={CreateTrip} />
           {/* <Route path="/trip/view/:id" component={ModifyTrip} /> */}
+          <Route path="/current-trip" component={TripsUnderWay} />
+          <Route path="/my-trips" component={MyTripsPage} />
         </Route>
       </Router>
     </Provider>
