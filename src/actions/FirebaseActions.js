@@ -22,9 +22,9 @@ function setUserData(userData) {
 function setUserRef(uid) {
   userRef = usersRef.child(uid);
   userRef.once('value', (snap) => {
-    console.log('snap.val(): ', snap.val());
+    // console.log('snap.val(): ', snap.val());
     if (!snap.val()) {
-      console.log('CREATING NEW USER');
+      // console.log('CREATING NEW USER');
       userRef.set({
         saved: false,
         current: false,
@@ -36,7 +36,7 @@ function setUserRef(uid) {
   store.dispatch((dispatch) => {
     userRef.off();
     userRef.on('value', (snap) => {
-      console.log('SETTING USER DATA');
+      // console.log('SETTING USER DATA');
       dispatch(setUserData(snap.val()));
     }, (err) => {
       console.log('ERROR: ', err);
@@ -55,7 +55,7 @@ function signInSuccess(result) {
 
 function initAuthSuccess(user) {
   setUserRef(user.uid);
-  console.log('INIT AUTH: ', user);
+  // console.log('INIT AUTH: ', user);
   return {
     type: 'INIT_AUTH_SUCCESS',
     payload: user,
