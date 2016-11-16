@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 
 export default class UserTrips extends Component {
   constructor() {
@@ -11,7 +12,7 @@ export default class UserTrips extends Component {
      <div className="content">
        {currPage === 'Current' && <div>
          {tripsData.data.map(trip =>
-           <div>
+           <div key={uuid()} >
              <h4>{trip.name}</h4>
              <p>{trip.description}</p>
            </div>)}
