@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { submitFile } from '../actions/ImageActions';
 
 @connect(
-  state => {
-    return {
-      image: state.image,
-    };
-  },
+  // state => {
+  //   return {
+  //     image: state.image,
+  //   };
+  // },
+  null,
   dispatch => {
     return {
       submitFile(file) {
@@ -38,7 +39,8 @@ export default class UploadImage extends Component {
   }
 
   submit = () => {
-    this.props.submitFile(this.state.file);
+    const { file } = this.state;
+    this.props.submitFile(file);
   }
 
   render() {

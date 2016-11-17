@@ -1,11 +1,12 @@
-const BUCKET_NAME = 'myno1bucket';
+const AWS = require('aws-sdk');
+const path = require('path');
+
+const BUCKET_NAME = 'tripify-image-bucket';
 
 const AWS_URL_BASE ='https://s3.amazonaws.com/'
 
 const mongoose = require('mongoose');
-const AWS = require('aws-sdk');
 const uuid = require('uuid');
-const path = require('path');
 
 const s3 = new AWS.S3();
 
