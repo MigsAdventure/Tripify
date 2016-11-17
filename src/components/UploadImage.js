@@ -1,5 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { submitFile } from '../actions/ImageActions';
 
+@connect(
+  state => {
+    return {
+      image: state.image,
+    };
+  },
+  dispatch => {
+    return {
+      submitFile(file) {
+        dispatch(submitFile(file));
+      },
+    };
+  }
+)
 export default class UploadImage extends Component {
   constructor() {
     super();
