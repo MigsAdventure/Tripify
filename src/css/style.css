@@ -119,6 +119,52 @@ label {
   /*animation: circleBg 30s infinite ease;*/
 }
 
+.modal-backdrop.in {
+  background-color: aliceblue;
+  opacity: 0.9;
+  }
+
+  .modal-content {
+    background-color: #42A0EE;
+  }
+
+  .modalComponent {
+    color: ghostwhite;
+    letter-spacing: 1px;
+  }
+
+  div.custom-modal {
+    transform: translateY(-50%);
+    top:50%;
+  }
+
+  .signBtn {
+    box-shadow: 0 0 0.1em rgba(0,0,0,.5),
+                 0 0 0.2em rgba(0,0,0,.5);
+    padding:0.7em;
+    margin:.5em 1.2em;
+    vertical-align: baseline;
+    background: #4586ec;
+  }
+
+  .googleSignBtn {
+    width:14em;
+    padding:0;
+    background-color: #4586ec;
+    background-image: url('/assets/btn_google_dark_normal_ios.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    height:3em;
+    text-align: right;
+  }
+  .signInText {
+    margin-right:1em;
+  }
+
+  .googleSignImage {
+
+  }
+
 @keyframes circleBg {
   20% {
     background-position: 70em 40em;

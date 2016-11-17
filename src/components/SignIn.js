@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap';
 
+
 export default class SignIn extends Component {
   googleSignIn = () => {
     this.props.toggle();
@@ -9,7 +10,7 @@ export default class SignIn extends Component {
 
   render() {
     return (
-      <Modal
+      <Modal className='modalComponent'
         show={this.props.show}
         onHide={this.props.toggle}
         dialogClassName="custom-modal"
@@ -25,15 +26,22 @@ export default class SignIn extends Component {
         </Modal.Body>
         <Modal.Footer>
           <div className="text-center">
-            <button>Sign In</button>
-            <button>Sign Up</button>
-            <br /><br />
-            <img
-              onClick={this.googleSignIn}
-              height="40px"
-              src="/google-sign-in.png"
-              alt="google sign in"
-            />
+            <div className='row'>
+              <button className=" btn signBtn">Sign In</button>
+              <button className=" btn signBtn">Sign Up</button>
+            </div>
+            <div className="row">
+              <button className="signBtn btn googleSignBtn" >
+                <h5 className="signInText">Sign in with Google</h5>
+                {/* <img
+                  className="googleSignImage"
+                  onClick={this.googleSignIn}
+                  height="40px"
+                  src="/google-sign-in.png"
+                  alt="google sign in"
+                /> */}
+              </button>
+            </div>
           </div>
         </Modal.Footer>
       </Modal>
