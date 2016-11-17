@@ -33,8 +33,8 @@ export default class CreateTripWrapper extends Component {
     console.log('displayDestination: ', displayDestination);
 
     return (
-      <div>
-        <Maps
+      <div className="createTripWrapper">
+        <Maps className="mapsComponent"
           google={window.google}
           destination={displayDestination}
           waypoints={displayWaypoints}

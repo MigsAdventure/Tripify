@@ -47,7 +47,7 @@ export default class Maps extends Component {
 
   render() {
     return (
-      <div className="col-sm-12">
+      <div className="col-xs-12 mapContainer">
         <div  ref="mapRef" className="mapRef"></div>
       </div>
     );

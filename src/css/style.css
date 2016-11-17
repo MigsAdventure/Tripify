@@ -338,7 +338,20 @@ label {
   padding-right: 30px !important;
 }
 
+.createTripWrapper {
+  height: 50%;
+}
+
+.mapsComponent  {
+  height:100%;
+}
+
 .mapRef {
-  height: 300px;
-  width: 800px;
+  height: 100%;
+  width: 100%;
+}
+
+.mapContainer {
+  height: 100%;
+  padding: 0;
 }
