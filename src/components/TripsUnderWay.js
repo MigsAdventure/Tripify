@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Maps from './Maps';
+import UploadImage from './UploadImage';
 
 export default class TripsUnderWay extends Component {
   constructor() {
@@ -14,6 +15,7 @@ export default class TripsUnderWay extends Component {
     return (
       <div className="container">
         <Maps google={window.google} {...this.state} />
+        <UploadImage />
       </div>
     );
   }
