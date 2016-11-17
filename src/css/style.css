@@ -10,11 +10,26 @@ body {
   min-height:320px;
   max-width:2200px;
   margin: auto;
-  background-image: url('http://www.ufoparamotors.com/wp-content/uploads/2015/01/blur-clouds.jpg')
+  background-image: url('http://www.ufoparamotors.com/wp-content/uploads/2015/01/blur-clouds.jpg');
+  background-position: center center;
+  background-size: cover;
+}
+
+
+.navText{
+  text-decoration: none !important;
+  display: inline-block !important;
+  width:100%;
+  margin:0.1em;
 }
 
 .mainDiv {
   height: 100% !important;
+}
+
+.navBarText h1 {
+  white-space: normal !important;
+  font-size: 100% !important;
 }
 
 img{
@@ -72,6 +87,26 @@ label {
   top: 50%;
   transform: translateY(-50%);
 }
+
+.navText .material-icons {
+  top: 0;
+  transform:translateY(35%);
+  padding: 0 0.5em 0 2.5em;
+}
+
+.navText {
+  text-align: left;
+}
+
+/*.navText  div  span  div  div {
+  padding: 0 5em;
+}*/
+
+.navText:hover {
+  background: skyblue;
+}
+
+
 
 .homeBg {
   width:100%;
@@ -145,8 +180,13 @@ label {
 
 @media only screen and (min-width:600px) and (min-height:400px) {
   body {
-    font-size: 2.2em;
+    font-size: 2em;
   }
+
+  /*.navBarText h1 {
+    white-space: normal !important;
+    font-size: 0.5em !important;
+  }*/
 
   .material-icons {
     font-size: 150%;
@@ -192,9 +232,7 @@ label {
 }
 
 
-@media only screen and (min-width:800px) {
 
-}
 
 @media only screen and (min-width:1024px) {
   body {
@@ -210,16 +248,39 @@ label {
 
 @media only screen and (min-width:1600px) {
   body {
-    font-size: 3.8em;
+    font-size: 3em;
   }
-  .bar {
-    height:2.4em;
-  }
-
   .hamburgerBtn button {
     vertical-align: bottom;
   }
 
+  .navbar-brand{
+    font-size:1.3em;
+  }
+
+  .navBarText {
+    font-size: 1.5em;
+  }
+
+  .bar {
+    height: 2.2em;
+  }
+
+  ul.navbar-nav {
+    height: 3.7em !important;
+  }
+
+  .navbar-nav > li{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .navbar-header {
+    -webkit-transform: translateY(25%);
+    -ms-transform: translateY(25%);
+    transform: translateY(25%);
+  }
 }
 
 .navbar-nav {
@@ -231,9 +292,14 @@ label {
   display: none;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 770px) {
   .bigScreen {
     display: block;
+  }
+
+  .navbar-header a, .nav a {
+    display: inline-block;
+    text-decoration: none !important;
   }
 
   li > div > span> div > div {
@@ -243,6 +309,28 @@ label {
   .navbar-header a, .nav a {
     color:white;
   }
+
+  .navbar-brand{
+    font-size:1.4em;
+  }
+
+  label {
+    padding: 0.5rem;
+    margin: 0;
+  }
+
+  .hamburgerContainer {
+    display: none;
+  }
+
+
+  .bar {
+    height:2.5em;
+  }
+}
+
+@media (min-width:845px) {
+
 }
 
 .user  {

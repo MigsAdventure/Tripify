@@ -51,15 +51,14 @@ export default class Hamburger extends Component {
         (
           <div>
             <ul className="nav navbar-nav navbar-left">
-              <li><MenuItem><Link to="/">Home</Link></MenuItem></li>
-              <li><MenuItem onTouchTap={this.handleClose}><Link to="/trip/create">Create Trip</Link></MenuItem></li>
-              <li><MenuItem onTouchTap={this.handleClose}><Link to="/current-trip">Current Trip</Link></MenuItem></li>
-              <li><MenuItem onTouchTap={this.handleClose}><Link to="/my-trips">My Trips</Link></MenuItem></li>
-              <li><MenuItem onTouchTap={this.handleClose}><Link to="/profile">My Profiles</Link></MenuItem></li>
-              <li><MenuItem onTouchTap={signOut}>Sign Out</MenuItem></li>
+              <li><MenuItem><Link className="navBarText" to="/">Home</Link></MenuItem></li>
+              <li><MenuItem onTouchTap={this.handleClose}><Link className="navBarText" to="/trip/create">Create Trip</Link></MenuItem></li>
+              <li><MenuItem onTouchTap={this.handleClose}><Link className="navBarText" to="/my-trips">My Trips</Link></MenuItem></li>
+              <li><MenuItem onTouchTap={this.handleClose}><Link className="navBarText" to="/profile">My Profiles</Link></MenuItem></li>
+              <li><MenuItem onTouchTap={signOut}><Link className="navBarText">Sign Out</Link></MenuItem></li>
             </ul>
-            <div className="nav navbar-nav navbar-right">
-              <MenuItem className="user"> Hi, {user.displayName}</MenuItem>
+            <div className="nav navbar-nav navbar-right userContainer">
+              <MenuItem className="user navBarText"><Link className="navBarText"> Hi, {user.displayName}</Link></MenuItem>
             </div>
           </div>
         );
@@ -90,13 +89,13 @@ export default class Hamburger extends Component {
           <RaisedButton className="hamburgerBtn" onTouchTap={this.handleToggle}>
             <i className="material-icons">menu</i>
           </RaisedButton>
-          <Drawer
+          <Drawer className='drawer'
             docked={false}
-            width={200}
+            width={300}
             open={this.state.open}
             onRequestChange={open => this.setState({ open })}
           >
-            <AppBar
+            <AppBar className="navBarText"
               title={loggedIn ? `Hi, ${user.displayName}` : 'Tripify'}
               id="poop"
               onTouchTap={this.handleClose}
@@ -104,21 +103,20 @@ export default class Hamburger extends Component {
               style={{ backgroundColor: '#2b98f0', minHeight: '40px' }}
             />
             <br />
-            <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE88A;</i><Link to="/">Home</Link></MenuItem>
+            <Link className="navText" to="/"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE88A;</i>Home</MenuItem></Link>
 
             {loggedIn ?
               <div>
-                <MenuItem onTouchTap={this.handleClose}><Link to="/trip/create"><i className="material-icons">&#xE55E;</i>Create Trip</Link></MenuItem>
-                <MenuItem onTouchTap={this.handleClose}><Link to="/current-trip"><i className="material-icons">&#xE55E;</i>Current Trip</Link></MenuItem>
-                <MenuItem onTouchTap={this.handleClose}><Link to="/my-trips"><i className="material-icons">&#xE55B;</i>My Trips</Link></MenuItem>
-                <MenuItem onTouchTap={this.handleClose}><Link to="/profile"><i className="material-icons">&#xE8A6;</i>My Profile</Link></MenuItem>
-                <MenuItem onTouchTap={signOut}><i className="material-icons">block</i>Sign Out</MenuItem>
+                <Link className="navText" to="/trip/create"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i>Create Trip</MenuItem></Link>
+                <Link className="navText" to="/my-trips"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem></Link>
+                <Link className="navText" to="/profile"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE8A6;</i>My Profile</MenuItem></Link>
+                <Link className="navText"><MenuItem onTouchTap={signOut}><i className="material-icons">block</i>Sign Out</MenuItem></Link>
               </div>
             : null}
 
             {loggedIn ? null : <div>
-              <MenuItem onTouchTap={this.toggleSignIn}><i className="material-icons">&#xE876;</i>Sign In</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE14F;</i>Sign Up</MenuItem>
+              <Link className="navText"><MenuItem onTouchTap={this.toggleSignIn}><i className="material-icons">&#xE876;</i>Sign In</MenuItem></Link>
+              <Link className="navText"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE14F;</i>Sign Up</MenuItem></Link>
             </div>}
           </Drawer>
         </div>
