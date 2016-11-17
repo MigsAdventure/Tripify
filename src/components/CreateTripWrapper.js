@@ -18,19 +18,23 @@ export default class CreateTripWrapper extends Component {
     const displayWaypoints = [];
 
     if (waypoints.length) {
-      displayDestination = waypoints[waypoints.length - 1].formatted_address;
+      const location = waypoints[waypoints.length - 1].geometry.location;
+      displayDestination = `${location.lat},${location.lng}`;
     } else {
       displayDestination = '';
     }
 
     if (waypoints.length > 1) {
       for (let i = 0; i < waypoints.length - 1; i++) {
-        displayWaypoints.push({ location: waypoints[i].formatted_address });
+        const location = waypoints[i].geometry.location;
+        displayWaypoints.push({
+          location: `${location.lat},${location.lng}`,
+        });
       }
     }
 
-    // console.log('displayWaypoints: ', displayWaypoints);
-    // console.log('displayDestination: ', displayDestination);
+    console.log('displayWaypoints: ', displayWaypoints);
+    console.log('displayDestination: ', displayDestination);
 
     return (
       <div className="createTripWrapper">
