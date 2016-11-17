@@ -150,7 +150,7 @@ export default class CreateTrip extends Component {
           </div>
           :
           <div>
-            <form key={uuid()} onSubmit={this.saveTrip}>
+            <form onSubmit={this.saveTrip}>
               <button id="save" className="btn btn-default">Save Trip</button>
               <h3>Trip Info</h3>
               <input id="title" type="text" onChange={this.inputChange} value={title} placeholder="enter title" required />

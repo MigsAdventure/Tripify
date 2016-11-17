@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import uuid from 'uuid';
 
 import Maps from './Maps';
+import CreateTrip from './CreateTrip';
 
 @connect(state => ({
   waypoints: state.waypoints,
@@ -37,8 +39,7 @@ export default class CreateTripWrapper extends Component {
           destination={displayDestination}
           waypoints={displayWaypoints}
         />
-
-
+        <CreateTrip />
       </div>
     );
   }
