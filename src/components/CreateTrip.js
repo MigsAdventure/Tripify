@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSearch } from '../actions/ApiActions';
-import * as FirebaseActions from '../actions/FirebaseActions';
 import uuid from 'uuid';
 
+import { fetchSearch } from '../actions/ApiActions';
+import * as FirebaseActions from '../actions/FirebaseActions';
+import * as WaypointActions from '../actions/WaypointActions';
 
 @connect(state => ({
-  user: state.user,
   results: state.results,
+  waypoints: state.waypoints,
 }), dispatch => ({
   fetchSearchResults(searchPackage) {
     dispatch(fetchSearch(searchPackage));
@@ -15,13 +16,15 @@ import uuid from 'uuid';
   createNewTrip(trip) {
     dispatch(FirebaseActions.createNewTrip(trip));
   },
+  setWaypoints(waypoints) {
+    dispatch(WaypointActions.setWaypoints(waypoints));
+  },
 }))
 
 export default class CreateTrip extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      waypoints: [],
       search: false,
       title: '',
       tags: '',
@@ -44,7 +47,9 @@ export default class CreateTrip extends Component {
   }
 
   addWaypoint = (waypoint) => {
-    this.setState({ waypoints: [...this.state.waypoints, waypoint] });
+    const { setWaypoints, waypoints } = this.props;
+    setWaypoints([...waypoints, waypoint]);
+    // this.setState({ waypoints: [...this.state.waypoints, waypoint] });
     this.toggleSearch();
   }
 
@@ -70,33 +75,37 @@ export default class CreateTrip extends Component {
   }
 
   plusOrder = (i) => {
-    const { waypoints } = this.state;
+    const { waypoints, setWaypoints } = this.props;
     if (waypoints.length > 1 && i >= 1) {
       const curr = waypoints[i];
       waypoints[i] = waypoints[i - 1];
       waypoints[i - 1] = curr;
-      this.setState({ waypoints });
+      // this.setState({ waypoints });
+      setWaypoints(waypoints);
     }
   }
 
   minusOrder = (i) => {
-    const { waypoints } = this.state;
+    const { waypoints, setWaypoints } = this.props;
     if (waypoints.length > 1 && i < waypoints.length - 1) {
       const curr = waypoints[i];
       waypoints[i] = waypoints[i + 1];
       waypoints[i + 1] = curr;
-      this.setState({ waypoints });
+      // this.setState({ waypoints });
+      setWaypoints(waypoints);
     }
   }
 
   removeWaypoint = (i) => {
-    const { waypoints } = this.state;
-    this.setState({ waypoints: waypoints.filter((waypoint, index) => !(index === i)) });
+    const { waypoints, setWaypoints } = this.props;
+    setWaypoints(waypoints.filter((waypoint, index) => !(index === i)));
+    // this.setState({ waypoints: waypoints.filter((waypoint, index) => !(index === i)) });
   }
 
   saveTrip = (e) => {
     e.preventDefault();
-    const { waypoints, title, tags, description } = this.state;
+    const { title, tags, description } = this.state;
+    const { waypoints } = this.props;
     if (waypoints.length) {
       this.props.createNewTrip({
         title,
@@ -115,9 +124,10 @@ export default class CreateTrip extends Component {
   }
 
   render() {
-    console.log('this: ', this);
-    const { waypoints, search, title, description, tags } = this.state;
-    const { results } = this.props;
+    console.log('this CreateTrip: ', this);
+    const { search, title, description, tags } = this.state;
+    const { results, waypoints } = this.props;
+
     return (
       <div>
         <br />

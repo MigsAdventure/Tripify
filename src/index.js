@@ -10,7 +10,7 @@ import ProfilePage from './components/ProfilePage';
 import MyTripsPage from './components/MyTripsPage';
 import HomePage from './components/HomePage';
 import ResultsPage from './components/ResultsPage';
-import CreateTrip from './components/CreateTrip';
+import CreateTripWrapper from './components/CreateTripWrapper';
 import TripsUnderWay from './components/TripsUnderWay';
 import { initAuth } from './actions/FirebaseActions';
 import store from './store';
@@ -27,7 +27,7 @@ render(
           <IndexRoute component={HomePage} />
           <Route path="/search-results" component={ResultsPage} />
           <Route path="/profile" component={ProfilePage} />
-          <Route path="/trip/create" component={CreateTrip} />
+          <Route path="/trip/create" component={CreateTripWrapper} />
           {/* <Route path="/trip/view/:id" component={ModifyTrip} /> */}
           <Route path="/current-trip" component={TripsUnderWay} />
           <Route path="/my-trips" component={MyTripsPage} />
