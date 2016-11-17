@@ -21,6 +21,8 @@ function setUserData(userData) {
 
 function setUserRef(uid) {
   userRef = usersRef.child(uid);
+  // console.log('uid: ', uid);
+  // console.log('userRef: ', userRef);
   userRef.once('value', (snap) => {
     // console.log('snap.val(): ', snap.val());
     if (!snap.val()) {
@@ -34,7 +36,7 @@ function setUserRef(uid) {
   });
 
   store.dispatch((dispatch) => {
-    userRef.off();
+    // userRef.off();
     userRef.on('value', (snap) => {
       // console.log('SETTING USER DATA');
       dispatch(setUserData(snap.val()));
@@ -46,7 +48,7 @@ function setUserRef(uid) {
 
 function signInSuccess(result) {
   setUserRef(result.user.uid);
-  console.log('SIGN IN SUCCESS: ', result);
+  // console.log('SIGN IN SUCCESS: ', result);
   return {
     type: 'SIGN_IN_SUCCESS',
     payload: result.user,

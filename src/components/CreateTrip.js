@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
+import { browserHistory } from 'react-router';
 
 import { fetchSearch } from '../actions/ApiActions';
 import * as FirebaseActions from '../actions/FirebaseActions';
@@ -29,6 +30,8 @@ export default class CreateTrip extends Component {
       title: '',
       tags: '',
       description: '',
+      picture: '',
+      id: '',
     };
   }
 
@@ -67,9 +70,13 @@ export default class CreateTrip extends Component {
       this.setState({
         tags: e.target.value,
       });
-    } else {
+    } else if (target === 'description') {
       this.setState({
         description: e.target.value,
+      });
+    } else if (target === 'picture') {
+      this.setState({
+        picture: e.target.value,
       });
     }
   }
@@ -104,15 +111,20 @@ export default class CreateTrip extends Component {
 
   saveTrip = (e) => {
     e.preventDefault();
-    const { title, tags, description } = this.state;
-    const { waypoints } = this.props;
+    const { title, tags, description, picture } = this.state;
+    const { waypoints, setWaypoints, createNewTrip } = this.props;
     if (waypoints.length) {
-      this.props.createNewTrip({
+      createNewTrip({
         title,
         tags,
         description,
         waypoints,
+        picture,
+        locStart: waypoints[0],
+        locEnd: waypoints[waypoints.length - 1],
       });
+      setWaypoints([]);
+      browserHistory.push('/my-trips');
     } else {
       alert('Please add waypoints!');
     }
@@ -124,8 +136,8 @@ export default class CreateTrip extends Component {
   }
 
   render() {
-    console.log('this CreateTrip: ', this);
-    const { search, title, description, tags } = this.state;
+    // console.log('this CreateTrip: ', this);
+    const { search, title, description, tags, picture } = this.state;
     const { results, waypoints } = this.props;
 
     return (
@@ -156,6 +168,8 @@ export default class CreateTrip extends Component {
               <input id="title" type="text" onChange={this.inputChange} value={title} placeholder="enter title" required />
               <br />
               <input id="tags" type="text" onChange={this.inputChange} value={tags} placeholder="enter search tags" required />
+              <br />
+              <input id="picture" type="text" onChange={this.inputChange} value={picture} placeholder="enter picture url" required />
               <br />
               <textarea id="description" onKeyUp={this.autoGrow} value={description} onChange={this.inputChange} type="text" placeholder="enter description" required />
             </form>

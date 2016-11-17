@@ -11,7 +11,7 @@ import CreateTrip from './CreateTrip';
 
 export default class CreateTripWrapper extends Component {
   render() {
-    console.log('this: ', this);
+    // console.log('this: ', this);
     const { waypoints } = this.props;
 
     let displayDestination;
@@ -29,8 +29,8 @@ export default class CreateTripWrapper extends Component {
       }
     }
 
-    console.log('displayWaypoints: ', displayWaypoints);
-    console.log('displayDestination: ', displayDestination);
+    // console.log('displayWaypoints: ', displayWaypoints);
+    // console.log('displayDestination: ', displayDestination);
 
     return (
       <div>
