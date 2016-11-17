@@ -12,14 +12,14 @@ export default class UserTrips extends Component {
      <div className="content">
        {currPage === 'Current' && <div>
          {tripsData.data.map(trip =>
-           <div key={uuid()} >
+           <div key={uuid()}>
              <h4>{trip.name}</h4>
              <p>{trip.description}</p>
            </div>)}
-       </div> }
-       {currPage === 'Previous' && <div>Previous Menu</div> }
-       {currPage === 'Saved' && <div>Saved Menu</div> }
-     </div>
+             </div> }
+           {currPage === 'Previous' && <div>Previous Menu</div> }
+           {currPage === 'Saved' && <div>Saved Menu</div> }
+           </div>
     );
   }
 }
