@@ -16,9 +16,9 @@ export default class UserTrips extends Component {
              <h4>{trip.name}</h4>
              <p>{trip.description}</p>
            </div>)}
-             </div> }
-           {currPage === 'Previous' && <div>Previous Menu</div> }
-           {currPage === 'Saved' && <div>Saved Menu</div> }
+       </div> }
+       {currPage === 'Previous' && <div>Previous Menu</div> }
+       {currPage === 'Saved' && <div>Saved Menu</div> }
            </div>
     );
   }
