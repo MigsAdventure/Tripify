@@ -19,7 +19,7 @@ export default class UserTrips extends Component {
        </div> }
        {currPage === 'Previous' && <div>Previous Menu</div> }
        {currPage === 'Saved' && <div>Saved Menu</div> }
-           </div>
+     </div>
     );
   }
 }

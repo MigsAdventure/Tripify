@@ -33,7 +33,7 @@ export default class Maps extends Component {
         directionsService.route({
           origin: `${pos.lat}, ${pos.lng}`,
           destination,
-          waypoints,
+          // waypoints,
           optimizeWaypoints: true,
           travelMode: 'DRIVING',
         }, (result, status) => {
