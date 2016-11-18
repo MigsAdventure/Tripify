@@ -71,7 +71,7 @@ export default class TripsUnderWay extends Component {
     return (
       <div className="underWayWrapper">
         <div className="createTripWrapper">
-          <Maps google={window.google} {...this.state} />
+          {this.state.destination && this.state.waypoints ? <Maps google={window.google} {...this.state} /> : <h3>Loading...</h3> }
         </div>
         <div>
           <CurrentTripsDisplay userdata={userTripData} />
