@@ -69,10 +69,14 @@ export default class TripsUnderWay extends Component {
 
     // console.log('this.state:', this.state);
     return (
+      <div className="underWayWrapper">
+        <div className="createTripWrapper">
+          <Maps google={window.google} {...this.state} />
+        </div>
+        <div>
+          <CurrentTripsDisplay userdata={userTripData} />
+        </div>
 
-      <div className="container createTripWrapper">
-        <Maps google={window.google} {...this.state} />
-        <CurrentTripsDisplay userdata={userTripData} />
       </div>
 
 

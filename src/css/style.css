@@ -250,6 +250,24 @@ div.content.active {
   color:white;
 }
 
+.underWayWrapper {
+  height: 100%;
+}
+
+.currentAccordion > div {
+  margin: 2em auto 1em;
+  background-color: skyblue;
+}
+
+ .title, .active  {
+  margin: 0 !important;
+}
+
+.title {
+  padding-top: 2em !important;
+}
+
+
 
 @media only screen and (min-width:600px) and (min-height:400px) {
   body {
