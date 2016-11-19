@@ -35,9 +35,9 @@ export default class MyTripsPage extends Component {
             className={`col-xs-4 myTripsNavItem ${currMenu === 'Current' ? 'selected' : ''}`}
             onClick={this.selectNav}>Current</div>
           <div
-                className={`col-xs-4 myTripsNavItem ${currMenu === 'Saved' ? 'selected' : ''}`}
-                onClick={this.selectNav}>Saved</div>
-              </div>
+            className={`col-xs-4 myTripsNavItem ${currMenu === 'Saved' ? 'selected' : ''}`}
+            onClick={this.selectNav}>Saved</div>
+        </div>
             </div>
           );
         }
