@@ -23,7 +23,7 @@ console.log('userTripData: ', tripsData)
 
     return (
      <div className="content">
-       {currPage === 'Current' && <div>
+       {currPage === 'Current' && this.props.tripsData !== undefined && <div>
          {Object.keys(tripsData).map((current ) => {
            console.log('current: ', tripsData[current].title);
            return (
