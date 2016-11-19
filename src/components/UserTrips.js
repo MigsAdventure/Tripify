@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
-import { Grid, Image, Segment } from 'semantic-ui-react'
+import { Grid, Image, Segment, Loader, Accordion, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
+import CurrentTrips from './CurrentTrips';
+import SavedTrips from './SavedTrips';
+import PreviousTrips from './PreviousTrips';
 
 @connect(state => ({
 
-    tripsData: state.user.saved,
+  tripsData: state.user,
 
 }))
 
@@ -18,38 +21,25 @@ export default class UserTrips extends Component {
 
   render () {
     let { currPage, tripsData } = this.props;
-// let userTripData = this.state.userTripData  || [];
-console.log('userTripData: ', tripsData)
+    console.log('this:', this);
+    let loader = (<div className="topHalfLoader tripLoader">
+      <Loader active size="huge" inline="centered" />
+      <h4>Loading Trips</h4>
+    </div>);
 
+    const currTrips = tripsData[currPage.toLowerCase()];
+    console.log('currTrips:', currTrips);
     return (
-     <div className="content">
-       {currPage === 'Current' && this.props.tripsData !== undefined && <div>
-         {Object.keys(tripsData).map((current ) => {
-           console.log('current: ', tripsData[current].title);
-           return (
-             <div key={uuid()}>
-               <Grid celled>
-                 <Grid.Row>
-                   <Segment.Group>
-                     <Segment><Grid.Column width={3}>
-                       <Image src={tripsData[current].picture} />
-                     </Grid.Column>
-                     </Segment>
-                     <Segment.Group>
-                       <Grid.Column width={13}>
-                         <Segment>{tripsData[current].title}</Segment>
-                         <Segment>{tripsData[current].tags}</Segment>
-                         <Segment>{tripsData[current].description}</Segment>
-                       </Grid.Column>
-                     </Segment.Group>
-                   </Segment.Group>
-                 </Grid.Row>
-               </Grid>
-             </div>)})}
-       </div>}
-       {currPage === 'Previous' && <div>Previous Menu</div> }
-       {currPage === 'Saved' && <div>Saved Menu</div> }
-     </div>
-    );
-  }
-}
+      <div className="mainUserTripsContainer">
+        {currTrips ? null : loader}
+
+        {currPage === 'Current' && <CurrentTrips currentTrips={tripsData.current} />}
+        
+        {currPage === 'Previous' && <PreviousTrips previousTrips={tripsData.previous} />}
+
+        {currPage === 'Saved' && <SavedTrips savedTrips={tripsData.saved} />}
+
+      </div>
+    ); // end of return
+  } // end of render
+} // end of class

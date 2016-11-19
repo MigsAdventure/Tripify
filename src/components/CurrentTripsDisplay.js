@@ -68,7 +68,7 @@ export default class CurrentTripsDisplay extends Component {
           <h4>Loading Waypoints</h4>
         </div>
 
-        }
+      }
       </div>
     )
   }

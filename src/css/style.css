@@ -15,6 +15,10 @@ body {
   background-size: cover;
 }
 
+.selected {
+  color: black;
+  background-color:skyblue;
+}
 
 .navText{
   text-decoration: none !important;
@@ -252,6 +256,7 @@ div.content.active {
 
 .underWayWrapper {
   height: 100%;
+  background-color: rgba(33, 150, 243, 0.59);
 }
 
 .currentAccordion > div {
@@ -303,6 +308,11 @@ div.ui.huge.active {
   margin:auto;
 }
 
+.tripLoader {
+  top: 50%;
+  transform:translateY(-50%);
+}
+
 
 
 @media only screen and (min-width:600px) and (min-height:400px) {
@@ -347,9 +357,13 @@ div.ui.huge.active {
   background: #2196f3;
   width: 100%;
   color: white;
-  padding: 1em 0;
+  padding: 0;
   position: absolute;
   bottom:0;
+}
+
+.myTripsNavItem {
+  padding: 1em;
 }
 
 .myTripsNavItem:hover {
