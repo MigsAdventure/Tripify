@@ -4,5 +4,6 @@ import results from './results';
 import auth from './auth';
 import user from './user';
 import waypoints from './waypoints';
+import tripInfo from './tripInfo';
 
-export default combineReducers({ results, auth, user, waypoints });
+export default combineReducers({ results, auth, user, waypoints, tripInfo });
