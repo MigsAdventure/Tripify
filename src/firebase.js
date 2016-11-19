@@ -17,7 +17,6 @@ import firebase from 'firebase';
 //   storageBucket: 'test-app-7a5c0.appspot.com',
 //   messagingSenderId: '803419720138',
 // };
-
 // Dustin's api keys
 const config = {
   apiKey: "AIzaSyBhjDmU4Rb3YYaJVsUevi6_IUG7xx9Oa5M",

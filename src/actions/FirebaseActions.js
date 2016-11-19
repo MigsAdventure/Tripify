@@ -1,6 +1,12 @@
-import firebase from 'firebase';
+import { firebase, Firebase } from 'firebase';
+import { browserHistory } from 'react-router';
 import { firebaseAuth, firebaseDb } from '../firebase';
 import store from '../store';
+
+export const SIGN_OUT_USER = 'SIGN_OUT_USER';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const AUTH_USER = 'AUTH_USER';
+
 
 let userRef = null;
 const usersRef = firebaseDb.ref('users');
@@ -122,4 +128,56 @@ export function initAuth(dispatch) {
       }
      );
   });
+}
+
+export function signUpUser(credentials) {
+  console.log('credentials: ', credentials);
+  console.log('password: ', credentials.email);
+
+   return function (dispatch) {
+    firebaseAuth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+
+      .then(response => {
+        dispatch (authUser());
+        browserHistory.push('/my-trips');
+      })
+      .catch(error => {
+        console.log('error: ', error);
+        dispatch(authError(error));
+      });
+   }
+}
+
+export function signInUser(credentials) {
+  console.log('credentials: ', credentials);
+  return function (dispatch) {
+  firebaseAuth.signInWithEmailAndPassword(credentials.Object.values(email), credentials.password.value)
+    .then(response => {
+      dispatch(authUser());
+      browserHistory.push('/my-trips')
+    })
+    .catch(error => {
+      console.log('error: ', error);
+      dispatch(authError(error));
+    });
+  };
+}
+export function signOutUser() {
+  browserHistory.push('/');
+
+  return {
+    type: SIGN_OUT_USER,
+  };
+}
+export function authUser() {
+  return {
+    type: AUTH_USER,
+  };
+}
+
+export function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    payload: error,
+  };
 }
