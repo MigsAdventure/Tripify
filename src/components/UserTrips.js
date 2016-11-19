@@ -14,16 +14,7 @@ export default class UserTrips extends Component {
     super(props);
     this.state = this.props;
   }
-  // componentWillReceiveProps(nextProps) {
-  //   let userTripData = nextProps.tripsData[Object.keys(nextProps.tripsData).map((current) => {
-  //     nextProps.tripsData[current];
-  //   })];
 
-// this.setState({
-//   userTripData,
-// });
-// console.log('userTripData: ', userTripData)
-// }
 
   render () {
     let { currPage, tripsData } = this.props;
@@ -32,7 +23,7 @@ console.log('userTripData: ', tripsData)
 
     return (
      <div className="content">
-       {currPage === 'Current' && <div>
+       {currPage === 'Current' && this.props.tripsData !== undefined && <div>
          {Object.keys(tripsData).map((current ) => {
            console.log('current: ', tripsData[current].title);
            return (
@@ -46,19 +37,19 @@ console.log('userTripData: ', tripsData)
                      </Segment>
                      <Segment.Group>
                        <Grid.Column width={13}>
-                           <Segment>{tripsData[current].title}</Segment>
-                           <Segment>{tripsData[current].tags}</Segment>
-                           <Segment>{tripsData[current].description}</Segment>
-                         </Grid.Column>
-                       </Segment.Group>
+                         <Segment>{tripsData[current].title}</Segment>
+                         <Segment>{tripsData[current].tags}</Segment>
+                         <Segment>{tripsData[current].description}</Segment>
+                       </Grid.Column>
                      </Segment.Group>
-                   </Grid.Row>
-                 </Grid>
-               </div>)})}
-         </div>}
-         {currPage === 'Previous' && <div>Previous Menu</div> }
+                   </Segment.Group>
+                 </Grid.Row>
+               </Grid>
+             </div>)})}
+       </div>}
+       {currPage === 'Previous' && <div>Previous Menu</div> }
        {currPage === 'Saved' && <div>Saved Menu</div> }
-           </div>
+     </div>
     );
   }
 }

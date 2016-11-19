@@ -4,7 +4,7 @@ const initialState = {
   previous: false,
 };
 
-export default function (state = initialState, action) {
+export default function (state = [], action) {
   switch (action.type) {
     case 'SET_USER_DATA':
       return Object.assign({}, action.payload);

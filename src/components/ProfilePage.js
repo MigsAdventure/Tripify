@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import  { browserHistory } from 'react-router';
+import  { browserHistory, Link } from 'react-router';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton'
 import * as FirebaseActions from '../actions/FirebaseActions';
+import { Accordion, Icon } from 'semantic-ui-react';
 
 
 @connect(state => ({
   loggedIn: state.auth.authenticated,
   user: state.auth.user,
+  userTrips: state.user,
 
 }))
 
@@ -19,75 +21,104 @@ export default class ProfilePage extends Component {
 
 
   render() {
-    const  { user } = this.props;
+    const  { user, userTrips } = this.props;
     console.log('user', user);
+    console.log('userTrips', userTrips);
     return(
-      <div >
-        <Card id='card' style = {{ textAlign: 'left', width: '100%',height: '100%', flex: 'initial'}}>
+      <div  className="cardContainer">
+        <Card id='card'  className="col-xs-12 col-sm-4 col-sm-offset-4">
           <CardHeader
             title={user.displayName}
             subtitle={user.email}
             avatar={user.photoURL}
           />
-          <CardMedia
 
-            // overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-          >
-            {/* <img style={{width: '20%', maxWidth: '20%', maxHeight: '20%', minWidth: '20%'}} src="https://www.groupon.com/merchant/wp-content/uploads/2013/07/san-francisco-small-business.jpg" alt="img.jpg" /> */}
-          </CardMedia>
           <CardTitle
             title="Settings"
-            subtitle="Total Miles: alot"
+            // subtitle="Total Miles: alot"
           />
-          <CardText>
+          {/* <CardText>
             stuff
-          </CardText>
+          </CardText> */}
           <div class= 'row'>
             <CardActions>
-              <FlatButton
-                style={{height: '65px', textAlign: 'left'}}
-                class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
-                id= 'FlatButton' >
-                <i class="material-icons" style={{color: '#966FD6',fontSize: '48px', paddingLeft: '10px', transform: 'translateY(10%)'}}>&#xE55E;</i> Current Trip
-              </FlatButton>
+              <Accordion>
 
-              <FlatButton
-                style={{height: '65px', textAlign: 'left'}}
-                class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
-                id= 'FlatButton'  >
-                <i class="material-icons" style={{color: '#77DD77',fontSize: '48px', paddingLeft: '10px', transform: 'translateY(10%)'}}>mail</i> Email
-              </FlatButton>
 
-              <FlatButton
-                style={{height: '65px', textAlign: 'left'}}
-                class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
-                id= 'FlatButton' >
-                <i class="material-icons" style={{color: '#FFb347',fontSize: '48px', paddingLeft: '10px', transform: 'translateY(10%)' }}>vpn_key</i> Change Password
-              </FlatButton>
+                {/* <Accordion.Title>
+                  <FlatButton
+                  className='profileBtn'
+                  >
+                  <i class="material-icons" style={{color: '#966FD6',fontSize: '48px', paddingLeft: '10px', transform: 'translateY(10%)'}}>&#xE55E;</i> Current Trips
+                  </FlatButton>
+                  </Accordion.Title>
+                  <Accordion.Content>{
+                  // userTrips.current === false ? <h4>You have no current trips</h4> :
 
-              <FlatButton
-                style={{height: '65px', textAlign: 'left'}}
-                class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
-                id= 'FlatButton'  >
-                <i class="material-icons" style={{color: '#F49AC2', fontSize: '48px', paddingLeft: '10px', transform: 'translateY(10%)'}}>mode_edit</i> Edit Things
-              </FlatButton>
+                  <Link to='/my-trips'>{!userTrips.current ? 'test' : userTrips.current.map(trip => (<div><h4>{trip.title}</h4></div>))}</Link>
+                  }
+                </Accordion.Content> */}
 
-              <FlatButton
-                style={{height: '65px', textAlign: 'left'}}
-                class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
-                id= 'FlatButton'  >
-                <i class="material-icons" style={{color:'#FF6961',fontSize: '48px', paddingLeft: '10px', transform: 'translateY(10%)'}}>favorite</i> Favorites
-              </FlatButton>
 
+
+                <Accordion.Title>
+                  <FlatButton
+                    className='profileBtn'
+                  >
+                    <i class="material-icons" style={{color: '#77DD77',fontSize: '48px', paddingLeft: '10px', transform: 'translateY(10%)'}}>mail</i> Email
+                  </FlatButton>
+                </Accordion.Title>
+                <Accordion.Content>
+                  <h4></h4>
+
+                </Accordion.Content>
+
+
+                <Accordion.Title>
+                  <FlatButton
+                    className='profileBtn'
+                  >
+                    <i class="material-icons" style={{color: '#FFb347',fontSize: '48px', paddingLeft: '10px', transform: 'translateY(10%)' }}>vpn_key</i> Change Password
+                  </FlatButton>
+                </Accordion.Title>
+                <Accordion.Content>
+
+                </Accordion.Content>
+
+
+                {/* <Accordion.Title>
+                  <FlatButton
+                  className='profileBtn'
+                  >
+                  <i class="material-icons" style={{color: '#F49AC2', fontSize: '48px', paddingLeft: '10px', transform: 'translateY(10%)'}}>mode_edit</i> Edit Things
+                  </FlatButton>
+                  </Accordion.Title>
+                  <Accordion.Content>
+                  <Link to='/mytrips'><h4>Go to Current Trip</h4></Link>
+                  </Accordion.Content>
+                */}
+
+                {/* <Accordion.Title>
+                  <FlatButton
+                  className='profileBtn'
+                  >
+                  <i class="material-icons" style={{color:'#FF6961',fontSize: '48px', paddingLeft: '10px', transform: 'translateY(10%)'}}>favorite</i> Favorites
+                  </FlatButton>
+                  </Accordion.Title>
+                  <Accordion.Content>
+                  <Link to='/mytrips'><h4>Go to Current Trip</h4></Link>
+                </Accordion.Content> */}
+
+              </Accordion>
             </CardActions>
           </div>
         </Card>
       </div>
-          )
-          }
-          }
+    );
+  }
+}
 
-        ProfilePage.propTypes = {
+ProfilePage.propTypes = {
 
-            user: React.PropTypes.object,
-          };
+  user: React.PropTypes.object,
+};
