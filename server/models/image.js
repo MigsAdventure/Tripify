@@ -35,19 +35,6 @@ imageSchema.statics.upload = function(fileObj, cb) {
   });
 };
 
-imageSchema.statics.deleteImage = (id, cb) => {
-  const Key = id;
-  const params = {
-    Bucket: BUCKET_NAME,
-    Key,
-  };
-  s3.deleteObject(params, (err, result) => {
-    if (err) return cb(err);
-    else cb(null, result);
-  });
-};
-
-
 const Image = mongoose.model('Image', imageSchema);
 
 module.exports = Image;

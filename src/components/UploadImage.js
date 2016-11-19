@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { submitFile } from '../actions/ImageActions';
 
 @connect(
-  // state => {
-  //   return {
-  //     image: state.image,
-  //   };
-  // },
   null,
   dispatch => {
     return {
