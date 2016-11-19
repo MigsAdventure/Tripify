@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Maps from './Maps';
-import { Rating } from 'semantic-ui-react';
+import { Rating, Loader } from 'semantic-ui-react';
 import CurrentTripsDisplay from './CurrentTripsDisplay';
 
 @connect(state => ({
@@ -58,6 +58,8 @@ export default class TripsUnderWay extends Component {
     // }); // end of setState
   } // end of function
 
+  
+
 
   render() {
     let userTripData = this.state.userTripData || [];
@@ -71,7 +73,11 @@ export default class TripsUnderWay extends Component {
     return (
       <div className="underWayWrapper">
         <div className="createTripWrapper">
-          {this.state.destination && this.state.waypoints ? <Maps google={window.google} {...this.state} /> : <h3>Loading...</h3> }
+          {this.state.destination && this.state.waypoints ? <Maps google={window.google} {...this.state} /> :
+            <div className="topHalfLoader">
+              <Loader active size='huge' inline='centered' />
+              <h4>Loading Map</h4>
+            </div>}
         </div>
         <div>
           <CurrentTripsDisplay userdata={userTripData} />
