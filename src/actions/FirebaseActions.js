@@ -12,6 +12,13 @@ export function createNewTrip(trip) {
   };
 }
 
+export function updateSavedTrip(trip, id) {
+  userRef.child('saved').child(id).set({...trip});
+  return {
+    type: 'UPDATE_TRIP',
+  };
+}
+
 function setUserData(userData) {
   return {
     type: 'SET_USER_DATA',

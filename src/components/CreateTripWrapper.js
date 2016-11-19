@@ -33,9 +33,9 @@ export default class CreateTripWrapper extends Component {
       }
     }
 
-    console.log('displayWaypoints: ', displayWaypoints);
-    console.log('displayDestination: ', displayDestination);
-    console.log('WAYPOINTS: ', waypoints);
+    // console.log('displayWaypoints: ', displayWaypoints);
+    // console.log('displayDestination: ', displayDestination);
+    // console.log('WAYPOINTS: ', waypoints);
 
     return (
       <div className="createTripWrapper">

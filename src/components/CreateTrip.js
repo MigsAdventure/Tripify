@@ -6,10 +6,12 @@ import { browserHistory } from 'react-router';
 import { fetchSearch } from '../actions/ApiActions';
 import * as FirebaseActions from '../actions/FirebaseActions';
 import * as WaypointActions from '../actions/WaypointActions';
+import * as TripInfoActions from '../actions/TripInfoActions';
 
 @connect(state => ({
   results: state.results,
   waypoints: state.waypoints,
+  tripInfo: state.tripInfo,
 }), dispatch => ({
   fetchSearchResults(searchPackage) {
     dispatch(fetchSearch(searchPackage));
@@ -20,18 +22,23 @@ import * as WaypointActions from '../actions/WaypointActions';
   setWaypoints(waypoints) {
     dispatch(WaypointActions.setWaypoints(waypoints));
   },
+  updateSavedTrip(trip, id) {
+    dispatch(FirebaseActions.updateSavedTrip(trip, id));
+  },
 }))
 
 export default class CreateTrip extends Component {
   constructor(props) {
     super(props);
+    const { tripInfo } = props;
+
     this.state = {
       search: false,
-      title: '',
-      tags: '',
-      description: '',
-      picture: '',
-      id: '',
+      title: tripInfo.title,
+      tags: tripInfo.tags,
+      description: tripInfo.description,
+      picture: tripInfo.picture,
+      id: tripInfo.id,
     };
   }
 
@@ -109,35 +116,53 @@ export default class CreateTrip extends Component {
     // this.setState({ waypoints: waypoints.filter((waypoint, index) => !(index === i)) });
   }
 
-  saveTrip = (e) => {
-    e.preventDefault();
-    const { title, tags, description, picture } = this.state;
-    const { waypoints, setWaypoints, createNewTrip } = this.props;
-    if (waypoints.length) {
-      createNewTrip({
-        title,
-        tags,
-        description,
-        waypoints,
-        picture,
-        locStart: waypoints[0],
-        locEnd: waypoints[waypoints.length - 1],
-      });
-      setWaypoints([]);
-      browserHistory.push('/my-trips');
+  saveTrip = (type) => {
+    const { title, tags, description, picture, id } = this.state;
+    const { waypoints, setWaypoints, createNewTrip, updateSavedTrip } = this.props;
+
+  // if (type === 'save')
+    if (waypoints.length && title.length && tags.length && description.length && picture.length) {
+      if (type === 'save') {
+        createNewTrip({
+          title,
+          tags,
+          description,
+          waypoints,
+          picture,
+          locStart: waypoints[0],
+          locEnd: waypoints[waypoints.length - 1],
+        });
+      } else if (type === 'update') {
+        updateSavedTrip({
+          title,
+          tags,
+          description,
+          waypoints,
+          picture,
+          locStart: waypoints[0],
+          locEnd: waypoints[waypoints.length - 1],
+        }, id);
+      }
+
+      if (type === 'start') {
+        browserHistory.push('/curent-trip');
+      } else {
+        setWaypoints([]);
+        browserHistory.push('/my-trips');
+      }
     } else {
-      alert('Please add waypoints!');
+      alert('Please add complete trip info or add waypoints!');
     }
   }
 
-  startTrip = () => {
-    this.saveTrip();
-    // SEND THIS TRIP TO TRIP UNDERWAY
-  }
+  // startTrip = () => {
+  //   this.saveTrip();
+  //   // SEND THIS TRIP TO TRIP UNDERWAY
+  // }
 
   render() {
-    // console.log('this CreateTrip: ', this);
-    const { search, title, description, tags, picture } = this.state;
+    console.log('this CreateTrip: ', this);
+    const { search, title, description, tags, picture, id } = this.state;
     const { results, waypoints } = this.props;
 
     return (
@@ -162,17 +187,18 @@ export default class CreateTrip extends Component {
           </div>
           :
           <div>
-            <form onSubmit={this.saveTrip}>
-              <button id="save" className="btn btn-default">Save Trip</button>
-              <h3>Trip Info</h3>
-              <input id="title" type="text" onChange={this.inputChange} value={title} placeholder="enter title" required />
-              <br />
-              <input id="tags" type="text" onChange={this.inputChange} value={tags} placeholder="enter search tags" required />
-              <br />
-              <input id="picture" type="text" onChange={this.inputChange} value={picture} placeholder="enter picture url" required />
-              <br />
-              <textarea id="description" onKeyUp={this.autoGrow} value={description} onChange={this.inputChange} type="text" placeholder="enter description" required />
-            </form>
+            <button onClick={() => this.saveTrip('save')} className="btn btn-default">Save as New</button>
+            {id ? <button onClick={() => this.saveTrip('update')} className="btn btn-default">Save Changes Only</button> : null}
+            <button onClick={() => this.saveTrip('start')} className="btn btn-default">Start Trip</button>
+
+            <h3>Trip Info</h3>
+            <input id="title" type="text" onChange={this.inputChange} value={title} placeholder="enter title" required />
+            <br />
+            <input id="tags" type="text" onChange={this.inputChange} value={tags} placeholder="enter search tags" required />
+            <br />
+            <input id="picture" type="text" onChange={this.inputChange} value={picture} placeholder="enter picture url" required />
+            <br />
+            <textarea id="description" onKeyUp={this.autoGrow} value={description} onChange={this.inputChange} type="text" placeholder="enter description" required />
             <h3>Trip Waypoints</h3>
             {waypoints.map((waypoint, i) => (
               <div key={waypoint.id} className="panel panel-default">
