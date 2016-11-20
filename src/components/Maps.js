@@ -34,7 +34,7 @@ export default class Maps extends Component {
           origin: `${pos.lat}, ${pos.lng}`,
           destination,
           waypoints,
-          optimizeWaypoints: true,
+          optimizeWaypoints: false,
           travelMode: 'DRIVING',
         }, (result, status) => {
           if (status === 'OK') {

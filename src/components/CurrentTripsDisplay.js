@@ -24,6 +24,10 @@ export default class CurrentTripsDisplay extends Component {
     this.props.setWaypoints(waypoints.filter((waypoint) => waypoint.id !== id));
   }
 
+  // directions = (endPoint) => {
+  //   return (<a href=``></a>)
+  // }
+
   render () {
     let { userdata } = this.props;
 
@@ -44,31 +48,40 @@ export default class CurrentTripsDisplay extends Component {
                     <Rating icon='star' size="huge" defaultRating={point.rating} maxRating={5} disabled/>
                   </Accordion.Title>
                   <Accordion.Content>
+                    <a target="_blank" href={`https://maps.google.com/?saddr=My%20Location&daddr=${point.formatted_address}`} ><Button color="green" size="large" className="directionsBtn"
+                      // onClick={() => this.directions(point.formatted_address)}
+                                                                                                               >
+                      <Button.Content >Directions</Button.Content>
+
+                    </Button></a>
+
                     {
                       i === 0 &&
-                        <Button color="blue" size="large" className='checkInBtn'>
-                          <Button.Content>Check In</Button.Content>
+                      <Button color="blue" size="large" className='checkInBtn' onClick={() => this.removeWaypoint(point.id)}>
+                        <Button.Content>Check In</Button.Content>
 
 
-                        </Button>
+                      </Button>
                     }
+
                     <Button color="red" size="large" className="removeBtn">
                       <Button.Content onClick={() => this.removeWaypoint(point.id)}>Remove</Button.Content>
 
 
                     </Button>
 
+
                   </Accordion.Content>
                 </Accordion>
               </div>
             )
           }) :
-        <div className="bottomHalfLoader">
-          <Loader active size='huge' inline='centered' />
-          <h4>Loading Waypoints</h4>
-        </div>
+          <div className="bottomHalfLoader">
+            <Loader active size='huge' inline='centered' />
+            <h4>Loading Waypoints</h4>
+          </div>
 
-      }
+        }
       </div>
     )
   }

@@ -10,7 +10,6 @@ body {
   min-height:320px;
   max-width:2200px;
   margin: auto;
-  /*background-image: url('https://www.ufoparamotors.com/wp-content/uploads/2015/01/blur-clouds.jpg');*/
   background-position: center center;
   background-size: cover;
 }
@@ -69,7 +68,7 @@ label {
   overflow:hidden;
 }
 
-.backBtnContainer button {
+Container button {
   background-color: transparent;
   border:none;
   height: 100%;
@@ -279,13 +278,14 @@ div.content.active {
 }
 
 .content.active {
-background-color: rgba(47, 79, 79, 0.60)
+  background-color: rgba(47, 79, 79, 0.60);
+  display:flex !important;
+  justify-content: center;
 }
 
 .currentAccordion > .title {
   padding-top: 2em !important;
-  border: solid 1px black;
-  border-bottom: none;
+  border-bottom: 1px solid black;
 }
 
 .bottomHalfLoader {
@@ -313,11 +313,30 @@ div.ui.huge.active {
   transform:translateY(-50%);
 }
 
+.drawerBar {
+  display: block;
+  padding:1em;
+  background-color: powderblue;
+}
+
+.currWayPointsRootContainer {
+    border: solid darkslategrey 1px;
+}
+
+.closeDrawerBtnContainer {
+  display: none;
+}
+
+.waypointBtnContainer {
+  display: none;
+}
+
 
 
 @media only screen and (min-width:600px) and (min-height:400px) {
   body {
     font-size: 2em;
+
   }
 
   /*.navBarText h1 {
@@ -346,6 +365,8 @@ div.ui.huge.active {
   }
 
 }
+
+
 
 .myTripsMainContainer {
   padding: 0;
@@ -381,6 +402,11 @@ div.ui.huge.active {
   .bar {
     height:2em;
   }
+
+  .rootDrawerWrapper {
+    width:30% !important;
+  }
+
 }
 
 @media only screen and (min-width:1600px) {
@@ -427,6 +453,9 @@ div.ui.huge.active {
   }
 }
 
+
+
+
 .navbar-nav {
   font-size: 20px !important;
   color: white !important;
@@ -436,12 +465,26 @@ div.ui.huge.active {
   display: none;
 }
 
-.createTripWrapper {
+.underWayWrapper {
   height: 50%;
+}
+
+.createTripWrapper {
+  height: 100%;
   min-height: 280px;
 }
 
-@media (min-width: 770px) {
+@media (min-width: 768px) {
+
+  body {
+    min-height: 480px;
+  }
+
+  .searchForm {
+    transform: translateY(-110%);
+    z-index: 40;
+  }
+
   .bigScreen {
     display: block;
   }
@@ -489,12 +532,143 @@ div.ui.huge.active {
 
   .bar {
     height:2.5em;
+    position: absolute;
+    z-index:5;
+    width:100%;
   }
 
   .createTripWrapper {
     min-height: 380px;
   }
+
+  .homeTopHalfContainer {
+    height:100%;
+  }
+
+  .homeTopHalf {
+    position: absolute;
+    width:100%;
+    min-height: 480px;
+  }
+
+  .homeCardsContainer {
+    min-height: 480px;
+    position: absolute;
+    z-index:2;
+    display: flex !important;
+    align-content: flex-end;
+    height: 100%;
+    width:100%;
+    align-items: flex-end;
+    justify-content: space-around;
+
+  }
+
+  .homeCard {
+    width:40%;
+    max-width: 350px;
+    display: inline-block;
+    z-index: 6;
+    background-color: whitesmoke;
+    margin-bottom: 3em;
+    box-shadow: 0 0 10px black;
+    border: 1px solid black;
+    max-width:
+  }
+
+  .tripsDisplayContainer {
+    display: flex !important;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .underWayWrapper {
+    height: 100%;
+  }
+
+  .createTripWrapper {
+    height: 100%;
+    min-height: 280px;
+  }
+
+  .rootDrawerWrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 25;
+    overflow: auto;
+    height: 100%;
+    width: 50%;
+    opacity: 1;
+    top: 2.5em;
+    height: calc(100% - 2.5em);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    transition: all 1s;
+  }
+
+  .currWayPointsRootContainer {
+    width:100% !important;
+        background-color: rgba(114, 185, 235, 0.78);
+  }
+
+  .drawerBar {
+    position: relative;
+  }
+
+  .hideDrawer {
+    right: -110%;
+    opacity: 0;
+  }
+
+  .closeDrawerBtnContainer, .waypointBtnContainer {
+    display: inline-block;
+    font-size:130%;
+    position: absolute;
+    left:1em;
+    top:1em;
+    background: transparent;
+    outline: none;
+    border-radius: 100%;
+    border:none;
+  }
+
+  .closeDrawerBtn, .waypointBtn {
+  background-color: transparent;
+  border:none;
+  }
+
+  .waypointBtnContainer {
+    top:3em;
+    left: inherit;
+    right:1em;
+    width:7em;
+  }
+
+  .waypointBtn {
+    font-size: 150%;
+  }
+
+  .infoDrawerMain {
+    width:100%;
+    top:0;
+  }
+
+i.map.icon {
+  color:rgba(204, 144, 35, 0.91);
+  font-size: 150%;
 }
+
+.content.active {
+  justify-content: space-around;
+}
+
+
+}
+
+
+
 
 @media only screen and (min-width:1024px) {
   body {
@@ -508,11 +682,13 @@ div.ui.huge.active {
     top: 50%;
     transform: translateY(-70%);
   }
+
+  .rootDrawerWrapper {
+    width:40% !important;
+  }
+
 }
 
-@media (min-width:845px) {
-
-}
 
 .user  {
   color: white !important;
