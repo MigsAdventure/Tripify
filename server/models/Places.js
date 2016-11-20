@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const googleMapsClient = require('@google/maps').createClient({
   key: process.env.GOOGLE_API_KEY,
   Promise,
@@ -11,4 +13,15 @@ exports.search = (req, res) => {
     //   res.handleSend(err);
     //   console.log('INSIDE CATCH');
     // });
+};
+
+exports.getLocation = (query, cb) => {
+  const { address } = query;
+  axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCaWpX2l-1xUmYGXzWPTyYONs08LiwHLao`)
+    .then((res) => {
+      const { results } = res.data;
+      const { location } = results[0].geometry;
+      cb(null, location);
+    })
+    .catch(console.error);
 };
