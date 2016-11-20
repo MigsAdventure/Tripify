@@ -6,6 +6,8 @@ import CurrentTripsDisplay from './CurrentTripsDisplay';
 
 @connect(state => ({
   currentTrip: state.user,
+  tripInfo: state.tripInfo,
+  waypoints: state.waypoints,
 }))
 
 export default class TripsUnderWay extends Component {
@@ -58,10 +60,11 @@ export default class TripsUnderWay extends Component {
     // }); // end of setState
   } // end of function
 
-  
+
 
 
   render() {
+    console.log('this TripsUnderWay: ', this);
     let userTripData = this.state.userTripData || [];
     console.log('this.props.user:', userTripData);
     // console.log('waypointData:', waypointData);

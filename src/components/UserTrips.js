@@ -59,7 +59,7 @@ export default class UserTrips extends Component {
     }
   }
 
-  startTrip = (type, id) => {
+  startTripDefault = (type, id) => {
     this.loadTrip(type, id);
     browserHistory.push('/current-trip');
   }
@@ -82,7 +82,7 @@ export default class UserTrips extends Component {
 
         {currPage === 'Previous' && <PreviousTrips previousTrips={tripsData.previous} />}
 
-        {currPage === 'Saved' && <SavedTrips startTrip={this.startTrip} modifyTrip={this.modifyTrip} savedTrips={tripsData.saved} />}
+        {currPage === 'Saved' && <SavedTrips startTrip={this.startTripDefault} modifyTrip={this.modifyTrip} savedTrips={tripsData.saved} />}
 
       </div>
     ); // end of return
