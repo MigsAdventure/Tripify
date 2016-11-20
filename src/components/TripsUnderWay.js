@@ -58,7 +58,7 @@ export default class TripsUnderWay extends Component {
     // }); // end of setState
   } // end of function
 
-  
+
 
 
   render() {
@@ -82,7 +82,7 @@ export default class TripsUnderWay extends Component {
         <div>
           <CurrentTripsDisplay userdata={userTripData} />
         </div>
-
+        
       </div>
 
 
