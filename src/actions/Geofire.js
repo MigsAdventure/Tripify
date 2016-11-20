@@ -1,15 +1,20 @@
-// import firebase from 'firebase';
 import axios from 'axios';
 import { firebaseDb } from '../firebase';
-// import store from '../store';
+
 
 const usersRef = firebaseDb.ref('users');
 
+function receiveTripsInSaved(trips) {
+  return {
+    type: 'RECEIVE_TRIPS_IN_SAVED',
+    payload: trips,
+  };
+}
+
 export function geofioreSearchResults(searchPackage) {
-  // console.log('searchPackage:', searchPackage);
   const locQuery = searchPackage.location;
 
-  return dispatch => {
+  return (dispatch) => {
     axios.get(`/api/places/location?address=${locQuery}`)
       .then((res) => {
         const location = res.data;
@@ -27,13 +32,11 @@ export function geofioreSearchResults(searchPackage) {
 
         usersRef.on('value', (snap) => {
           const usersObj = snap.val();
+          const trips = [];
           for (const user of Object.keys(usersObj)) {
             const { saved } = usersObj[user];
             for (const tripInfo of Object.keys(saved)) {
               const { description, locEnd, locStart, tags, title } = saved[tripInfo];
-              // console.log('description:', description);
-              // console.log('title:', title);
-              // console.log('saved[tripInfo]:', saved[tripInfo]);
               const endGeometry = locEnd.geometry;
               const endLocation = endGeometry.location;
               const startGeometry = locStart.geometry;
@@ -42,12 +45,14 @@ export function geofioreSearchResults(searchPackage) {
               && (endLocation.lng <= bottomLng) && (endLocation.lng >= topLng))
               || ((startLocation.lat <= rightLat) && (startLocation.lat >= leftLat)
               && (startLocation.lng <= bottomLng) && (startLocation.lng >= topLng)))
-              && ((tags.includes(keyWord)) || (title.includes(keyWord)))) {
-                console.log('saved[tripInfo]:', saved[tripInfo]);
-
+              && ((tags.includes(keyWord)) || (title.includes(keyWord))
+              || (description.includes(keyWord)))) {
+                trips.push(saved[tripInfo]);
               }
             }
           }
+          // console.log('trips:', trips)
+          dispatch(receiveTripsInSaved(trips));
         });
       })
       .catch(console.error);

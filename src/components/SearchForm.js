@@ -17,13 +17,8 @@ export default class SearchForm extends Component {
       trip: this.tripsInput.value,
       location: this.locationInput.value,
     };
-    // this.props.fetchSearchResults(searchPackage);
-    // const searchPackage = {
-    //   trip: 'ramen',
-    //   location: 'san francisco',
-    // };
     this.props.geofioreSearchResults(searchPackage);
-    // browserHistory.push('/search-results');
+    browserHistory.push('/search-results');
   }
 
   render() {
