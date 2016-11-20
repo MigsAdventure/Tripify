@@ -48,7 +48,7 @@ export default class CurrentTripsDisplay extends Component {
                       i === 0 &&
                         <Button color="blue" size="large" className='checkInBtn'>
                           <Button.Content>Check In</Button.Content>
-
+                          
 
                         </Button>
                     }
