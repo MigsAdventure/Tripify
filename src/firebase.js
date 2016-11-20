@@ -10,13 +10,13 @@ import firebase from 'firebase';
 // };
 
 // Z's api keys
-const config = {
-  apiKey: 'AIzaSyAiPaxx9QsCHft6xnKSfPOtKgEMXgrgIY0',
-  authDomain: 'test-app-7a5c0.firebaseapp.com',
-  databaseURL: 'https://test-app-7a5c0.firebaseio.com',
-  storageBucket: 'test-app-7a5c0.appspot.com',
-  messagingSenderId: '803419720138',
-};
+// const config = {
+//   apiKey: 'AIzaSyAiPaxx9QsCHft6xnKSfPOtKgEMXgrgIY0',
+//   authDomain: 'test-app-7a5c0.firebaseapp.com',
+//   databaseURL: 'https://test-app-7a5c0.firebaseio.com',
+//   storageBucket: 'test-app-7a5c0.appspot.com',
+//   messagingSenderId: '803419720138',
+// };
 
 // holly api keys
 // const config = {
@@ -26,15 +26,14 @@ const config = {
 //  storageBucket: 'moon-6244f.appspot.com',
 //  messagingSenderId: '684869793339',
 // };
-
 // Dustin's api keys
-// const config = {
-//   apiKey: "AIzaSyBhjDmU4Rb3YYaJVsUevi6_IUG7xx9Oa5M",
-//   authDomain: "test123-1e63d.firebaseapp.com",
-//   databaseURL: "https://test123-1e63d.firebaseio.com",
-//   storageBucket: "test123-1e63d.appspot.com",
-//   messagingSenderId: "315763032189"
-// };
+const config = {
+  apiKey: "AIzaSyBhjDmU4Rb3YYaJVsUevi6_IUG7xx9Oa5M",
+  authDomain: "test123-1e63d.firebaseapp.com",
+  databaseURL: "https://test123-1e63d.firebaseio.com",
+  storageBucket: "test123-1e63d.appspot.com",
+  messagingSenderId: "315763032189"
+};
 
 export const firebaseApp = firebase.initializeApp(config);
 export const firebaseDb = firebaseApp.database();

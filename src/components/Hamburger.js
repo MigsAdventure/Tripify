@@ -33,6 +33,10 @@ export default class Hamburger extends Component {
     };
   }
 
+  handleSignout() {
+    this.props.signOutUser();
+  }
+
   handleToggle = () => this.setState({ open: !this.state.open });
 
   handleClose = () => this.setState({ open: false });
@@ -67,7 +71,7 @@ export default class Hamburger extends Component {
        (
          <ul className="nav navbar-nav">
            <li><MenuItem><Link to="/">Home</Link></MenuItem></li>
-           <li><MenuItem>Sign Up</MenuItem></li>
+           <li><MenuItem><Link to='/signup'>Sign Up</Link></MenuItem></li>
            <li><MenuItem onTouchTap={this.toggleSignIn}>Sign In</MenuItem></li>
          </ul>
        );
@@ -116,7 +120,7 @@ export default class Hamburger extends Component {
 
             {loggedIn ? null : <div>
               <Link className="navText"><MenuItem onTouchTap={this.toggleSignIn}><i className="material-icons">&#xE876;</i>Sign In</MenuItem></Link>
-              <Link className="navText"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE14F;</i>Sign Up</MenuItem></Link>
+              <Link className="navText" to='/signup'><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE14F;</i>Sign Up</MenuItem></Link>
             </div>}
           </Drawer>
         </div>

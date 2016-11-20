@@ -6,6 +6,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Layout from './components/Layout';
+import Signup from './components/SignUp';
 import ProfilePage from './components/ProfilePage';
 import MyTripsPage from './components/MyTripsPage';
 import HomePage from './components/HomePage';
@@ -29,6 +30,7 @@ render(
           <Route path="/search-results" component={ResultsPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/trip/create" component={CreateTripWrapper} />
+          <Route path = "/signup" component={Signup} />
           {/* <Route path="/trip/view/:id" component={ModifyTrip} /> */}
           <Route path="/current-trip" component={TripsUnderWay} />
           <Route path="/my-trips" component={MyTripsPage} />
