@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 
 import * as FirebaseActions from '../actions/FirebaseActions';
+import * as WaypointActions from '../actions/WaypointActions';
+import * as TripInfoActions from '../actions/TripInfoActions';
 import SignIn from './SignIn';
 
 @connect(state => ({
@@ -20,6 +22,12 @@ import SignIn from './SignIn';
   },
   signInWithGoogle() {
     dispatch(FirebaseActions.signInWithGoogle());
+  },
+  setWaypoints(waypoints) {
+    dispatch(WaypointActions.setWaypoints(waypoints));
+  },
+  setTripInfo(tripInfo) {
+    dispatch(TripInfoActions.setTripInfo(tripInfo));
   },
 }))
 
@@ -42,6 +50,12 @@ export default class Hamburger extends Component {
     this.setState({ showSignIn: !this.state.showSignIn });
   }
 
+  clearTrip = () => {
+    const { setWaypoints, setTripInfo } = this.props;
+    setWaypoints([]);
+    setTripInfo(null);
+  }
+
   render() {
     const { showSignIn } = this.state;
     const { signOut, loggedIn, user } = this.props;
@@ -52,7 +66,7 @@ export default class Hamburger extends Component {
           <div>
             <ul className="nav navbar-nav navbar-left">
               <li><MenuItem><Link className="navBarText" to="/">Home</Link></MenuItem></li>
-              <li><MenuItem onTouchTap={this.handleClose}><Link className="navBarText" to="/trip/create">Create Trip</Link></MenuItem></li>
+              <li><MenuItem onTouchTap={this.handleClose}><Link onClick={this.clearTrip} className="navBarText" to="/trip/create">Create Trip</Link></MenuItem></li>
               <li><MenuItem onTouchTap={this.handleClose}><Link className="navBarText" to="/my-trips">My Trips</Link></MenuItem></li>
               <li><MenuItem onTouchTap={this.handleClose}><Link className="navBarText" to="/profile">My Profiles</Link></MenuItem></li>
               <li><MenuItem onTouchTap={signOut}><Link className="navBarText">Sign Out</Link></MenuItem></li>
@@ -107,7 +121,7 @@ export default class Hamburger extends Component {
 
             {loggedIn ?
               <div>
-                <Link className="navText" to="/trip/create"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i>Create Trip</MenuItem></Link>
+                <Link className="navText" onClick={this.clearTrip} to="/trip/create"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55E;</i>Create Trip</MenuItem></Link>
                 <Link className="navText" to="/my-trips"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE55B;</i>My Trips</MenuItem></Link>
                 <Link className="navText" to="/profile"><MenuItem onTouchTap={this.handleClose}><i className="material-icons">&#xE8A6;</i>My Profile</MenuItem></Link>
                 <Link className="navText"><MenuItem onTouchTap={signOut}><i className="material-icons">block</i>Sign Out</MenuItem></Link>

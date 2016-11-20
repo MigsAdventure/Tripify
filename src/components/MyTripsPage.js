@@ -26,7 +26,7 @@ export default class MyTripsPage extends Component {
           <label>{currMenu} Trips</label>
         </div>
         <UserTrips currPage={currMenu} />
-        
+
         <div className="row myTripsNavbar">
           <div
             className={`col-xs-4 myTripsNavItem ${currMenu === 'Previous' ? 'selected' : ''}`}
@@ -38,7 +38,7 @@ export default class MyTripsPage extends Component {
             className={`col-xs-4 myTripsNavItem ${currMenu === 'Saved' ? 'selected' : ''}`}
             onClick={this.selectNav}>Saved</div>
         </div>
-            </div>
+      </div>
           );
         }
       }
