@@ -29,6 +29,11 @@ export default class UserTrips extends Component {
   }
 
   modifyTrip = (type, id) => {
+    this.loadTrip(type, id);
+    browserHistory.push('/trip/create');
+  }
+
+  loadTrip = (type, id) => {
     const { setWaypoints, setTripInfo, tripsData } = this.props;
     const trips = tripsData[type];
     const trip = trips[id];
@@ -52,8 +57,11 @@ export default class UserTrips extends Component {
         id: '',
       });
     }
+  }
 
-    browserHistory.push('/trip/create');
+  startTrip = (type, id) => {
+    this.loadTrip(type, id);
+    browserHistory.push('/current-trip');
   }
 
   render() {
@@ -74,7 +82,7 @@ export default class UserTrips extends Component {
 
         {currPage === 'Previous' && <PreviousTrips previousTrips={tripsData.previous} />}
 
-        {currPage === 'Saved' && <SavedTrips modifyTrip={this.modifyTrip} savedTrips={tripsData.saved} />}
+        {currPage === 'Saved' && <SavedTrips startTrip={this.startTrip} modifyTrip={this.modifyTrip} savedTrips={tripsData.saved} />}
 
       </div>
     ); // end of return

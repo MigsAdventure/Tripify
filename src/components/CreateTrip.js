@@ -148,7 +148,14 @@ export default class CreateTrip extends Component {
       }
 
       if (type === 'start') {
-        browserHistory.push('/curent-trip');
+        setTripInfo({
+          title,
+          tags,
+          description,
+          picture,
+          id: '',
+        });
+        browserHistory.push('/current-trip');
       } else {
         setWaypoints([]);
         setTripInfo(null);
