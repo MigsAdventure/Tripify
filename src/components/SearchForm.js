@@ -13,15 +13,15 @@ export default class SearchForm extends Component {
 
   submitForm = (e) => {
     e.preventDefault();
-    // const searchPackage = {
-    //   trip: this.tripsInput.value,
-    //   location: this.locationInput.value,
-    // };
-    // this.props.fetchSearchResults(searchPackage);
     const searchPackage = {
-      trip: 'ramen',
-      location: 'san francisco',
+      trip: this.tripsInput.value,
+      location: this.locationInput.value,
     };
+    // this.props.fetchSearchResults(searchPackage);
+    // const searchPackage = {
+    //   trip: 'ramen',
+    //   location: 'san francisco',
+    // };
     this.props.geofioreSearchResults(searchPackage);
     // browserHistory.push('/search-results');
   }

@@ -1,15 +1,14 @@
-import Firebase from 'firebase';
+// import firebase from 'firebase';
 import axios from 'axios';
-import GeoFire from 'geofire';
 import { firebaseDb } from '../firebase';
 // import store from '../store';
 
 const usersRef = firebaseDb.ref('users');
-const geoFire = new GeoFire(usersRef);
 
 export function geofioreSearchResults(searchPackage) {
   // console.log('searchPackage:', searchPackage);
   const locQuery = searchPackage.location;
+
   return dispatch => {
     axios.get(`/api/places/location?address=${locQuery}`)
       .then((res) => {
@@ -17,22 +16,38 @@ export function geofioreSearchResults(searchPackage) {
         return location;
       })
       .then((location) => {
+        const keyWord = searchPackage.trip;
         const { lat, lng } = location;
 
-        const geoQuery = geoFire.query({
-          center: [40.6425372, -111.8885726],
-          radius: 75,
+        console.log('location:', location)
+        const leftLat = lat - 1;
+        const rightLat = lat + 1;
+        const topLng = lng - 1;
+        const bottomLng = lng + 1;
+
+        usersRef.on('value', (snap) => {
+          const usersObj = snap.val();
+          for (const user of Object.keys(usersObj)) {
+            const { saved } = usersObj[user];
+            for (const tripInfo of Object.keys(saved)) {
+              const { description, locEnd, locStart, tags, title } = saved[tripInfo];
+              // console.log('description:', description);
+              // console.log('title:', title);
+              // console.log('saved[tripInfo]:', saved[tripInfo]);
+              const endGeometry = locEnd.geometry;
+              const endLocation = endGeometry.location;
+              const startGeometry = locStart.geometry;
+              const startLocation = startGeometry.location;
+              if ((((endLocation.lat <= rightLat) && (endLocation.lat >= leftLat)
+              && (endLocation.lng <= bottomLng) && (endLocation.lng >= topLng))
+              || ((startLocation.lat <= rightLat) && (startLocation.lat >= leftLat)
+              && (startLocation.lng <= bottomLng) && (startLocation.lng >= topLng)))
+              && (tags.includes(keyWord))) {
+                console.log('saved[tripInfo]:', saved[tripInfo]);
+              }
+            }
+          }
         });
-        // var onKeyEnteredRegistration = geoQuery.on("key_entered", function(key, location, distance) {
-        console.log('geoQuery.on:', geoQuery.on)
-        geoQuery.on("key_entered", function(key, location, distance) {
-          console.log(key + " entered query at " + location + " (" + distance + " km from center)");
-        });
-        // geo.getPointsNearLoc([37.771393, -122.447104], 5,
-        //             function(array) {
-        //                 for (var i = 0; i < array.length; i++)
-        //                     console.log("A found point = ", array[i]);
-        //             });
 
 
       })
