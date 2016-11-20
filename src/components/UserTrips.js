@@ -34,7 +34,7 @@ export default class UserTrips extends Component {
         {currTrips ? null : loader}
 
         {currPage === 'Current' && <CurrentTrips currentTrips={tripsData.current} />}
-        
+
         {currPage === 'Previous' && <PreviousTrips previousTrips={tripsData.previous} />}
 
         {currPage === 'Saved' && <SavedTrips savedTrips={tripsData.saved} />}
