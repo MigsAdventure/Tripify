@@ -1,4 +1,4 @@
-import { firebase, Firebase } from 'firebase';
+import firebase from 'firebase';
 import { browserHistory } from 'react-router';
 import { firebaseAuth, firebaseDb } from '../firebase';
 import store from '../store';
@@ -131,12 +131,15 @@ export function initAuth(dispatch) {
 }
 
 export function signUpUser(credentials) {
-  console.log('credentials: ', credentials);
+  console.log('credentials: ', this);
   console.log('password: ', credentials.email);
 
    return function (dispatch) {
     firebaseAuth.createUserWithEmailAndPassword(credentials.email, credentials.password)
 
+      .then(response => {
+        setUserRef(response.uid);
+        })
       .then(response => {
         dispatch (authUser());
         browserHistory.push('/my-trips');
@@ -151,9 +154,10 @@ export function signUpUser(credentials) {
 export function signInUser(credentials) {
   console.log('credentials: ', credentials);
   return function (dispatch) {
-  firebaseAuth.signInWithEmailAndPassword(credentials.Object.values(email), credentials.password.value)
+  firebaseAuth.signInWithEmailAndPassword(credentials.email, credentials.password)
     .then(response => {
-      dispatch(authUser());
+
+      dispatch(initAuthSuccess(response));
       browserHistory.push('/my-trips')
     })
     .catch(error => {
@@ -169,6 +173,8 @@ export function signOutUser() {
     type: SIGN_OUT_USER,
   };
 }
+
+
 export function authUser() {
   return {
     type: AUTH_USER,
