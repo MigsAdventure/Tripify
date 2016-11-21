@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import { browserHistory } from 'react-router';
+import { Rating } from 'semantic-ui-react';
 
 import { fetchSearch } from '../actions/ApiActions';
 import * as FirebaseActions from '../actions/FirebaseActions';
@@ -202,11 +203,26 @@ export default class CreateTrip extends Component {
             </form>
             <button className="btn btn-default" onClick={this.toggleSearch}>Back To Trip</button>
             <br /><br />
-            {results.map(result => (
-              <button key={result.id} className="btn btn-default" onClick={() => this.addWaypoint(result)}>
-                {result.name}
-              </button>
-            ))}
+            <div className="search-results">
+              {results.map(result => (
+                <button key={result.id} className="btn btn-default search-results-button" onClick={() => this.addWaypoint(result)}>
+                  <b>{result.name}</b>
+                  <br />
+                  <Rating icon='star' size="small" defaultRating={result.rating} maxRating={5} disabled />
+                  <hr />
+                  {result.photos && <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${result.photos[0].photo_reference}&key=AIzaSyCaWpX2l-1xUmYGXzWPTyYONs08LiwHLao` || ''} /> }
+                  <hr />
+                  <b>Type:</b>
+                  <ul>
+                    {result.types.map(type => (
+                      <li className="search-results-li" key={uuid()}>{type}</li>
+                    ))}
+                  </ul>
+                  <b>Address: </b>
+                  {result.formatted_address}
+                </button>
+              ))}
+            </div>
           </div>
           :
           <div>
