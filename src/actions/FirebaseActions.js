@@ -19,9 +19,23 @@ export function createNewTrip(trip) {
 }
 
 export function updateSavedTrip(trip, id) {
-  userRef.child('saved').child(id).set({...trip});
+  userRef.child('saved').child(id).set({ ...trip });
   return {
     type: 'UPDATE_TRIP',
+  };
+}
+
+export function removeTrip(type, id) {
+  const removeRef = userRef.child(type);
+  removeRef.child(id).remove();
+  removeRef.once('value', (snap) => {
+    if (!snap.val()) {
+      removeRef.set(false);
+    }
+  }); // check for empty trips and set to false if empty
+
+  return {
+    type: 'REMOVE_TRIP',
   };
 }
 
