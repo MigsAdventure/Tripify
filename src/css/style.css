@@ -46,8 +46,49 @@ label {
 }
 
 .tripsDisplayContainer {
-  padding: 1em;
+  display: flex !important;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: row wrap;
+  width:100%;
+  padding:1em;
 }
+
+.bar {
+  margin-bottom: 1.5em;
+}
+
+
+.tripsDisplayInnerContainer {
+  display: flex !important;
+      flex-flow: row wrap;
+      padding: 1em;
+      height: 20em;
+      overflow: auto;
+      justify-content: space-around;
+      box-shadow: 0 0 10px black;
+      margin: 1em auto 1em;
+      width: 100%;
+      max-width: 20em;
+}
+
+.btnResultsContainer {
+  margin: 1em auto;
+}
+
+.waypointResults {
+  margin: 1em auto;
+}
+
+.tripDescription {
+  display: block;
+  padding:1em;
+}
+
+.resultCardContent {
+  display: flex !important;
+}
+
 
 .ratingIcon {
   position: relative;
@@ -244,6 +285,8 @@ div.content.active {
   height: 100%;
 }
 
+
+
 .backBtnContainer {
   display: inline-block;
   position: absolute;
@@ -277,10 +320,14 @@ div.content.active {
   margin: 0 !important;
 }
 
-.content.active {
+ .content.active {
   background-color: rgba(47, 79, 79, 0.60);
   display:flex !important;
-  justify-content: center;
+  justify-content: center !important;
+}
+
+div.currentAccordion > button {
+  margin: 0 1em !important;
 }
 
 .currentAccordion > .title {
@@ -485,6 +532,10 @@ div.ui.huge.active {
     z-index: 40;
   }
 
+  .tripsDisplayContainer {
+    padding-top: 3em !important;
+  }
+
   .bigScreen {
     display: block;
   }
@@ -580,6 +631,7 @@ div.ui.huge.active {
     display: flex !important;
     justify-content: space-around;
     align-items: center;
+
   }
 
   .underWayWrapper {
@@ -698,6 +750,12 @@ i.map.icon {
 
 .mapsComponent  {
   height:100%;
+}
+
+.backBtn {
+  background: transparent;
+  border: none;
+  font-size: 145%;
 }
 
 .mapRef {

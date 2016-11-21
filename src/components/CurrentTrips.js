@@ -35,6 +35,7 @@ export default function CurrentTrips(props) {
                       <Button.Content>Remove</Button.Content>
                     </Button>
 
+
                   </Accordion.Content>
                 </Accordion>
               </div>

@@ -4,22 +4,21 @@ import TripsDisplay from './TripsDisplay';
 import { Grid, Segment, Icon } from 'semantic-ui-react'
 
 @connect(state => ({
-  trips: {
-    data: state.results,
-  },
+  data: state.results,
 }))
 
 export default class ResultsPage extends Component {
 
   render() {
+    console.log('this.props.data:', this.props.data);
     return (
       <div>
         <div className='backBtnContainer'>
           <button className="backBtn"><Icon name="arrow left" /></button>
         </div>
-        <TripsDisplay results={this.props.trips} />
+        <TripsDisplay results={this.props.data} />
       </div>
-)
+    )
   }
 }
 

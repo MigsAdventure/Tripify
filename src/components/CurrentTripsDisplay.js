@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
-
 import { setWaypoints } from '../actions/WaypointActions';
 import { Rating, Loader, Accordion, Button } from 'semantic-ui-react';
-import * as FirebaseActions from '../actions/FirebaseActions';
 
-@connect(state => ({
-  tripInfo: state.tripInfo,
-}), dispatch => ({
+@connect(null, dispatch => ({
   setWaypoints(waypoints) {
     dispatch(setWaypoints(waypoints));
-  },
-  createAnyTrip(type, trip) {
-    dispatch(FirebaseActions.createAnyTrip(type, trip));
-  },
-  removeTrip(type, id) {
-    dispatch(FirebaseActions.removeTrip(type, id));
   },
 }))
 
@@ -29,29 +18,15 @@ export default class CurrentTripsDisplay extends Component {
 
   removeWaypoint = (id) => {
     console.log('id:', id);
-    let { userdata, setWaypoints, createAnyTrip, removeTrip, tripInfo } = this.props;
+    let { userdata, setWaypoints } = this.props;
     const waypoints = userdata;
     console.log('USER WAYPOINTS:', waypoints);
     setWaypoints(waypoints.filter((waypoint) => waypoint.id !== id));
-    if (waypoints.length - 1 === 0) {
-      createAnyTrip('previous', {
-        title: tripInfo.title,
-        tags: tripInfo.tags,
-        description: tripInfo.description,
-        waypoints,
-        picture: tripInfo.picture,
-        locStart: waypoints[0],
-        locEnd: waypoints[waypoints.length - 1],
-      });
-      // removeTrip('current', $ID); // remove in the future
-      browserHistory.push('/my-trips');
-    }
   }
 
   render () {
     let { userdata } = this.props;
     console.log('userdata: ', userdata);
-    console.log('CurrentTripsDisplay.this: ', this);
 
     return (
       <div className="currentWayPointsContainer">
@@ -66,7 +41,7 @@ export default class CurrentTripsDisplay extends Component {
                     <Rating icon='star' size="huge" defaultRating={point.rating} maxRating={5} disabled />
                   </Accordion.Title>
 
-
+                  
                   <Accordion.Content>
                     <a target="_blank" href={`https://maps.google.com/?saddr=My%20Location&daddr=${point.formatted_address}`} >
                       <Button color="green" size="large" className="directionsBtn">
