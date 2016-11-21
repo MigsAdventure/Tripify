@@ -191,14 +191,14 @@ export default class CreateTrip extends Component {
 
     return (
       <div>
-        <br />
+
         {search ?
-          <div>
-            <form key={uuid()} onSubmit={this.submitForm} className="col-md-2">
+          <div className="createTripLowHalf">
+            <form key={uuid()} onSubmit={this.submitForm} className="wayPointForm ">
               <input key={uuid()} type="text" placeholder="search places..." ref={(input) => { this.placesInput = input; }} required />
-              <br />
+
               <input key={uuid()} type="text" placeholder="at location..." ref={(input) => { this.locationInput = input; }} required />
-              <br />
+
               <button className="btn btn-default">Search</button>
             </form>
             <button className="btn btn-default" onClick={this.toggleSearch}>Back To Trip</button>
@@ -225,24 +225,26 @@ export default class CreateTrip extends Component {
             </div>
           </div>
           :
-          <div>
+          <div >
             <button onClick={() => this.saveTrip('save')} className="btn btn-default">Save as New</button>
             {id ? <button onClick={() => this.saveTrip('update')} className="btn btn-default">Save Changes Only</button> : null}
             <button onClick={() => this.saveTrip('start')} className="btn btn-default">Start Trip</button>
 
             <h3>Trip Info</h3>
-            <input id="title" type="text" onChange={this.inputChange} value={title} placeholder="enter title" required />
-            <br />
-            <input id="tags" type="text" onChange={this.inputChange} value={tags} placeholder="enter search tags" required />
-            <br />
-            <input id="picture" type="text" onChange={this.inputChange} value={picture} placeholder="enter picture url" required />
-            <br />
-            <textarea id="description" onKeyUp={this.autoGrow} value={description} onChange={this.inputChange} type="text" placeholder="enter description" required />
+            <div className="createInputWrapper">
+              <input id="title" type="text" onChange={this.inputChange} value={title} placeholder="enter title" required />
+
+              <input id="tags" type="text" onChange={this.inputChange} value={tags} placeholder="enter search tags" required />
+
+              <input id="picture" type="text" onChange={this.inputChange} value={picture} placeholder="enter picture url" required />
+
+              <textarea id="description" onKeyUp={this.autoGrow} value={description} onChange={this.inputChange} type="text" placeholder="enter description" required />
+            </div>
+
             <h3>Trip Waypoints</h3>
             <button onClick={this.toggleSearch} className="btn btn-default">
               <span className="glyphicon glyphicon-plus" />&nbsp;Add Waypoint
             </button>
-            <br /><br />
             {waypoints.map((waypoint, i) => (
               <div key={waypoint.id} className="panel panel-default">
                 <div className="panel-heading">

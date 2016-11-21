@@ -31,7 +31,7 @@ export default class TripsDisplay extends Component {
                   </div> */}
 
                   <div className="topResultCard">
-                    
+
                     {!trip.picture.length ?
                       <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${trip.locStart.photos[0].photo_reference}&key=AIzaSyCaWpX2l-1xUmYGXzWPTyYONs08LiwHLao`}/>
                       : <img src={trip.picture} alt=""/>
