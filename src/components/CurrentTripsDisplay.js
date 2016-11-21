@@ -56,7 +56,7 @@ export default class CurrentTripsDisplay extends Component {
                       i === 0 &&
                         <Button color="blue" size="large" className='checkInBtn' onClick={() => this.removeWaypoint(point.id)}>
                           <Button.Content>Check In</Button.Content>
-                          
+
 
                         </Button>
                     }
