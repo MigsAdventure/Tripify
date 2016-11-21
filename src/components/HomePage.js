@@ -36,11 +36,11 @@ export default function HomePage() {
       <div className="homeCardsContainer">
         <div className="homeCard">
           <label>Must See Trips</label>
-          <TripsDisplay results={trips1} key="1" />
+          {/* <TripsDisplay results={trips1} key="1" /> */}
         </div>
         <div className="homeCard">
           <label>Beach Trips</label>
-          <TripsDisplay results={trips2} key="2" />
+          {/* <TripsDisplay results={trips2} key="2" /> */}
         </div>
       </div>
 

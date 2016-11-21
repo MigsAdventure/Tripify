@@ -55,6 +55,8 @@
   margin: 0.8em;
 }
 
+
+
 .wayPointForm input{
   display: block;
   padding: 0.1em;
@@ -124,6 +126,12 @@ label {
   flex-flow: row wrap;
   width:100%;
   padding:1em;
+}
+
+.tripsDisplayInnerWrapper {
+  height:100vh !important;
+  width:100%;
+  overflow: auto;
 }
 
 .bar {
@@ -649,6 +657,14 @@ div.ui.huge.active {
 
   body {
     min-height: 480px;
+  }
+
+  .container {
+    height: 100%;
+    width: 100%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
   }
 
   .mapContainer {
