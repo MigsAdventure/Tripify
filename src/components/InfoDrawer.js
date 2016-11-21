@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Icon } from 'semantic-ui-react';
 import CurrentTripsDisplay from './CurrentTripsDisplay';
+import CreateTrip from './CreateTrip';
 
 export default class InfoDrawer extends Component {
   constructor() {
@@ -34,7 +35,11 @@ export default class InfoDrawer extends Component {
               </div>
               <h3>{title}</h3>
             </div>
-            <CurrentTripsDisplay userdata={userdata} />
+            {this.props.title === "WayPoints" ?
+              <CurrentTripsDisplay userdata={userdata} />
+              :
+              <CreateTrip />
+            }
           </div>
         </div>
       </div>
