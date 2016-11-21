@@ -1,3 +1,25 @@
+.search-results {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.search-results-button {
+  width: 45%;
+  white-space:normal;
+}
+
+.search-results-button > h5 {
+  /*word-wrap: break-word;*/
+  white-space:normal;
+}
+
+.search-results-li {
+  word-wrap: normal;
+  text-align: left;
+}
 
 #root,html, body {
   text-align: center;
