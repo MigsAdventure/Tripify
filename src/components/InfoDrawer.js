@@ -11,9 +11,6 @@ export default class InfoDrawer extends Component {
     };
   }
 
-
-
-
   toggleClose = (e) => {
     e.preventDefault();
     this.setState({
@@ -21,9 +18,7 @@ export default class InfoDrawer extends Component {
     });
   }
 
-
   render() {
-
     let { userdata, title } = this.props;
 
     return (
@@ -43,7 +38,6 @@ export default class InfoDrawer extends Component {
           </div>
         </div>
       </div>
-
-    )
+    );
   }
 }

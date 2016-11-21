@@ -4,7 +4,7 @@ import { Grid, Image, Segment, Loader, Accordion, Button } from 'semantic-ui-rea
 
 
 export default function SavedTrips(props) {
-  let {savedTrips} = props;
+  let { savedTrips, modifyTrip, startTrip } = props;
   return (
     <div>
       <h2>SavedTrips Page</h2>
@@ -23,11 +23,11 @@ export default function SavedTrips(props) {
                   </Accordion.Title>
                   <Accordion.Content>
 
-                    <Button color="green" size="huge" className="startBtn">
+                    <Button onClick={() => startTrip('saved', item)} color="green" size="huge" className="startBtn">
                       <Button.Content>Start</Button.Content>
                     </Button>
 
-                    <Button color="blue" size="huge" className="modifyBtn">
+                    <Button onClick={() => modifyTrip('saved', item)} color="blue" size="huge" className="modifyBtn">
                       <Button.Content>Modify</Button.Content>
                     </Button>
 
