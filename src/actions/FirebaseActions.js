@@ -18,6 +18,13 @@ export function createNewTrip(trip) {
   };
 }
 
+export function createAnyTrip(type, trip) {
+  userRef.child(type).push(trip);
+  return {
+    type: 'CREATE_NEW_TRIP',
+  };
+}
+
 export function updateSavedTrip(trip, id) {
   userRef.child('saved').child(id).set({ ...trip });
   return {

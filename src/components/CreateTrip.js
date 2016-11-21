@@ -19,6 +19,9 @@ import * as TripInfoActions from '../actions/TripInfoActions';
   createNewTrip(trip) {
     dispatch(FirebaseActions.createNewTrip(trip));
   },
+  createAnyTrip(type, trip) {
+    dispatch(FirebaseActions.createAnyTrip(type, trip));
+  },
   setWaypoints(waypoints) {
     dispatch(WaypointActions.setWaypoints(waypoints));
   },
@@ -121,7 +124,7 @@ export default class CreateTrip extends Component {
 
   saveTrip = (type) => {
     const { title, tags, description, picture, id } = this.state;
-    const { waypoints, setWaypoints, createNewTrip, updateSavedTrip, setTripInfo } = this.props;
+    const { waypoints, setWaypoints, createNewTrip, updateSavedTrip, setTripInfo, createAnyTrip } = this.props;
 
   // if (type === 'save')
     if (waypoints.length && title.length && tags.length && description.length) {
@@ -148,6 +151,15 @@ export default class CreateTrip extends Component {
       }
 
       if (type === 'start') {
+        createAnyTrip('current', {
+          title,
+          tags,
+          description,
+          waypoints,
+          picture,
+          locStart: waypoints[0],
+          locEnd: waypoints[waypoints.length - 1],
+        });
         setTripInfo({
           title,
           tags,
@@ -168,7 +180,7 @@ export default class CreateTrip extends Component {
 
   // startTrip = () => {
   //   this.saveTrip();
-  //   // SEND THIS TRIP TO TRIP UNDERWAY
+  //   browserHistory.push();
   // }
 
   render() {
