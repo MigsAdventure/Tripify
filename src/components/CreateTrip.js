@@ -25,6 +25,9 @@ import * as TripInfoActions from '../actions/TripInfoActions';
   updateSavedTrip(trip, id) {
     dispatch(FirebaseActions.updateSavedTrip(trip, id));
   },
+  setTripInfo(tripInfo) {
+    dispatch(TripInfoActions.setTripInfo(tripInfo));
+  },
 }))
 
 export default class CreateTrip extends Component {
@@ -118,7 +121,7 @@ export default class CreateTrip extends Component {
 
   saveTrip = (type) => {
     const { title, tags, description, picture, id } = this.state;
-    const { waypoints, setWaypoints, createNewTrip, updateSavedTrip } = this.props;
+    const { waypoints, setWaypoints, createNewTrip, updateSavedTrip, setTripInfo } = this.props;
 
   // if (type === 'save')
     if (waypoints.length && title.length && tags.length && description.length && picture.length) {
@@ -145,9 +148,17 @@ export default class CreateTrip extends Component {
       }
 
       if (type === 'start') {
-        browserHistory.push('/curent-trip');
+        setTripInfo({
+          title,
+          tags,
+          description,
+          picture,
+          id: '',
+        });
+        browserHistory.push('/current-trip');
       } else {
         setWaypoints([]);
+        setTripInfo(null);
         browserHistory.push('/my-trips');
       }
     } else {
@@ -200,6 +211,10 @@ export default class CreateTrip extends Component {
             <br />
             <textarea id="description" onKeyUp={this.autoGrow} value={description} onChange={this.inputChange} type="text" placeholder="enter description" required />
             <h3>Trip Waypoints</h3>
+            <button onClick={this.toggleSearch} className="btn btn-default">
+              <span className="glyphicon glyphicon-plus" />&nbsp;Add Waypoint
+            </button>
+            <br /><br />
             {waypoints.map((waypoint, i) => (
               <div key={waypoint.id} className="panel panel-default">
                 <div className="panel-heading">
@@ -213,9 +228,6 @@ export default class CreateTrip extends Component {
                 </div>
               </div>
             ))}
-            <button onClick={this.toggleSearch} className="btn btn-default">
-              <span className="glyphicon glyphicon-plus" />&nbsp;Add Waypoint
-            </button>
           </div>
         }
       </div>
