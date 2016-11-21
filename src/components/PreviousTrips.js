@@ -4,11 +4,10 @@ import { Grid, Image, Segment, Loader, Accordion, Button } from 'semantic-ui-rea
 
 
 export default function PreviousTrips(props) {
-  let {previousTrips} = props;
+  let { previousTrips, modifyTrip, startTrip, removeTrip } = props;
 
   return (
     <div>
-      <h2>PreviousTrips Page</h2>
       {
         // currPage === 'Previous' && tripsData.length > 0 &&
         Object.keys(previousTrips).map((item) =>
@@ -24,15 +23,15 @@ export default function PreviousTrips(props) {
                   </Accordion.Title>
                   <Accordion.Content>
 
-                    <Button color="green" size="huge" className="startBtn">
+                    <Button onClick={() => startTrip('previous', item)} color="green" size="huge" className="startBtn">
                       <Button.Content>Start</Button.Content>
                     </Button>
 
-                    <Button color="blue" size="huge" className="modifyBtn">
+                    <Button onClick={() => modifyTrip('previous', item)} color="blue" size="huge" className="modifyBtn">
                       <Button.Content>Modify</Button.Content>
                     </Button>
 
-                    <Button color="red" size="huge" className="removeBtn">
+                    <Button onClick={() => removeTrip('saved', item)} color="red" size="huge" className="removeBtn">
                       <Button.Content>Remove</Button.Content>
                     </Button>
 

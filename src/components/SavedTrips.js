@@ -7,7 +7,6 @@ export default function SavedTrips(props) {
   let { savedTrips, modifyTrip, startTrip, removeTrip } = props;
   return (
     <div>
-      <h2>SavedTrips Page</h2>
       {
         // currPage === 'Saved' && tripsData !== undefined &&
         Object.keys(savedTrips || {}).map((item) =>

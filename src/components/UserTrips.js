@@ -23,6 +23,9 @@ import * as FirebaseActions from '../actions/FirebaseActions';
   removeTrip(type, id) {
     dispatch(FirebaseActions.removeTrip(type, id));
   },
+  createAnyTrip(type, trip) {
+    dispatch(FirebaseActions.createAnyTrip(type, trip));
+  },
 }))
 
 export default class UserTrips extends Component {
@@ -63,6 +66,23 @@ export default class UserTrips extends Component {
 
   startTripDefault = (type, id) => {
     this.loadTrip(type, id);
+    if (type !== 'current') {
+      const { tripsData, createAnyTrip } = this.props;
+      const trips = tripsData[type];
+      const trip = trips[id];
+      const waypoints = trip.waypoints;
+
+      createAnyTrip('current', {
+        title: trip.title,
+        tags: trip.tags,
+        description: trip.description,
+        waypoints,
+        picture: trip.picture,
+        locStart: waypoints[0],
+        locEnd: waypoints[waypoints.length - 1],
+      });
+    }
+
     browserHistory.push('/current-trip');
   }
 
@@ -71,7 +91,7 @@ export default class UserTrips extends Component {
     console.log('this:', this);
     let loader = (<div className="topHalfLoader tripLoader">
       <Loader active size="huge" inline="centered" />
-      <h4>Loading Trips</h4>
+      <h4>No trips yet...</h4>
     </div>);
 
     const currTrips = tripsData[currPage.toLowerCase()];
@@ -80,9 +100,23 @@ export default class UserTrips extends Component {
       <div className="mainUserTripsContainer">
         {currTrips ? null : loader}
 
-        {currPage === 'Current' && <CurrentTrips currentTrips={tripsData.current} />}
+        {currPage === 'Current' &&
+          <CurrentTrips
+            startTrip={this.startTripDefault}
+            modifyTrip={this.modifyTrip}
+            removeTrip={removeTrip}
+            currentTrips={tripsData.current}
+          />
+        }
 
-        {currPage === 'Previous' && <PreviousTrips previousTrips={tripsData.previous} />}
+        {currPage === 'Previous' &&
+          <PreviousTrips
+            startTrip={this.startTripDefault}
+            modifyTrip={this.modifyTrip}
+            removeTrip={removeTrip}
+            previousTrips={tripsData.previous}
+          />
+        }
 
         {currPage === 'Saved' &&
           <SavedTrips
@@ -90,7 +124,8 @@ export default class UserTrips extends Component {
             modifyTrip={this.modifyTrip}
             removeTrip={removeTrip}
             savedTrips={tripsData.saved}
-          />}
+          />
+        }
 
       </div>
     ); // end of return

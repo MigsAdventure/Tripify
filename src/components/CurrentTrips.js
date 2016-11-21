@@ -4,12 +4,11 @@ import { Grid, Image, Segment, Loader, Accordion, Button } from 'semantic-ui-rea
 
 
 export default function CurrentTrips(props) {
-  let { currentTrips } = props;
+  let { currentTrips, modifyTrip, startTrip, removeTrip } = props;
   console.log('currentTrips:', currentTrips);
 
   return (
     <div>
-      <h2>CurrentTrips Page</h2>
       {
         Object.keys(currentTrips).map((item) =>
           {
@@ -24,23 +23,23 @@ export default function CurrentTrips(props) {
                   </Accordion.Title>
                   <Accordion.Content>
 
-                <Button color="green" size="huge" className="startBtn">
-                  <Button.Content>Start</Button.Content>
-                </Button>
+                    <Button onClick={() => startTrip('current', item)} color="green" size="huge" className="startBtn">
+                      <Button.Content>Start</Button.Content>
+                    </Button>
 
-                <Button color="blue" size="huge" className="modifyBtn">
-                  <Button.Content>Modify</Button.Content>
-                </Button>
+                    <Button onClick={() => modifyTrip('current', item)} color="blue" size="huge" className="modifyBtn">
+                      <Button.Content>Modify</Button.Content>
+                    </Button>
 
-                <Button color="red" size="huge" className="removeBtn">
-                  <Button.Content>Remove</Button.Content>
-                </Button>
+                    <Button onClick={() => removeTrip('current', item)} color="red" size="huge" className="removeBtn">
+                      <Button.Content>Remove</Button.Content>
+                    </Button>
 
-              </Accordion.Content>
-            </Accordion>
-          </div>
-        );
-      })
+                  </Accordion.Content>
+                </Accordion>
+              </div>
+            );
+          })
       }
     </div>
   )

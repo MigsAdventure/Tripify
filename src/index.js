@@ -15,7 +15,7 @@ import CreateTripWrapper from './components/CreateTripWrapper';
 import TripsUnderWay from './components/TripsUnderWay';
 import { initAuth } from './actions/FirebaseActions';
 import store from './store';
-import CurrentTripsDisplay from './components/CurrentTripsDisplay';
+// import CurrentTripsDisplay from './components/CurrentTripsDisplay';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
