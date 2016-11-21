@@ -25,7 +25,10 @@ export default class MyTripsPage extends Component {
         <div>
           <label>{currMenu} Trips</label>
         </div>
-        <UserTrips currPage={currMenu} />
+        <div className="userTripsWrapper">
+          <UserTrips currPage={currMenu}  />
+          
+        </div>
 
         <div className="row myTripsNavbar">
           <div

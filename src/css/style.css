@@ -55,8 +55,9 @@ label {
 }
 
 .bar {
-  margin-bottom: 1.5em;
+  /*margin-bottom: 1.5em;*/
 }
+
 
 
 .tripsDisplayInnerContainer {
@@ -70,6 +71,17 @@ label {
       margin: 1em auto 1em;
       width: 100%;
       max-width: 20em;
+}
+
+.mainUserTripsContainer {
+  overflow: auto;
+    height: 94%;
+    top: 3.7em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+
 }
 
 .btnResultsContainer {
@@ -378,6 +390,22 @@ div.ui.huge.active {
   display: none;
 }
 
+.myTripsMainContainer {
+  margin-top: -2em;
+}
+
+.userTripContainer {
+  width: 100%;
+  background-color: rgba(33, 150, 243, 0.59);
+  max-width: 600px;
+  margin: auto;
+  border: 1px solid darkslategrey;
+  padding: 1em 0;
+  margin-top: -0.7em;
+
+
+}
+
 
 
 @media only screen and (min-width:600px) and (min-height:400px) {
@@ -385,6 +413,13 @@ div.ui.huge.active {
     font-size: 2em;
 
   }
+
+  .mainUserTripsContainer {
+
+    top:2.8em;
+
+  }
+
 
   /*.navBarText h1 {
   white-space: normal !important;
@@ -525,6 +560,10 @@ div.ui.huge.active {
 
   body {
     min-height: 480px;
+  }
+
+  .myTripsMainContainer {
+    margin: 0;
   }
 
   .searchForm {

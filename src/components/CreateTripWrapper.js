@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
-
+import InfoDrawer from './InfoDrawer';
 import Maps from './Maps';
-import CreateTrip from './CreateTrip';
+
 
 @connect(state => ({
   waypoints: state.waypoints,
@@ -35,8 +35,8 @@ export default class CreateTripWrapper extends Component {
       }
     }
 
-    console.log('displayWaypoints: ', displayWaypoints);
-    console.log('displayDestination: ', displayDestination);
+    // console.log('displayWaypoints: ', displayWaypoints);
+    // console.log('displayDestination: ', displayDestination);
     // console.log('WAYPOINTS: ', waypoints);
 
     return (
@@ -46,7 +46,7 @@ export default class CreateTripWrapper extends Component {
           destination={displayDestination}
           waypoints={displayWaypoints}
         />
-        <CreateTrip />
+        <InfoDrawer title={'Create A Trip'} />
       </div>
     );
   }
