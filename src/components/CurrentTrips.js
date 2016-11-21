@@ -24,16 +24,16 @@ export default function CurrentTrips(props) {
                   </Accordion.Title>
                   <Accordion.Content>
 
-                <Button color="green" size="huge" className="startBtn">
-                  <Button.Content>Start</Button.Content>
-                </Button>
+                    <Button color="green" size="huge" className="startBtn">
+                      <Button.Content>Start</Button.Content>
+                    </Button>
 
-                <Button color="blue" size="huge" className="modifyBtn">
-                  <Button.Content>Modify</Button.Content>
-                </Button>
+                    <Button color="blue" size="huge" className="modifyBtn">
+                      <Button.Content>Modify</Button.Content>
+                    </Button>
 
-                <Button color="red" size="huge" className="removeBtn">
-                  <Button.Content>Remove</Button.Content>
+                    <Button color="red" size="huge" className="removeBtn">
+                      <Button.Content>Remove</Button.Content>
                 </Button>
 
               </Accordion.Content>

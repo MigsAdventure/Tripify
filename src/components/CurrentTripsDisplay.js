@@ -41,7 +41,7 @@ export default class CurrentTripsDisplay extends Component {
                     <Rating icon='star' size="huge" defaultRating={point.rating} maxRating={5} disabled />
                   </Accordion.Title>
 
-
+                  
                   <Accordion.Content>
                     <a target="_blank" href={`https://maps.google.com/?saddr=My%20Location&daddr=${point.formatted_address}`} >
                       <Button color="green" size="large" className="directionsBtn">
@@ -53,7 +53,7 @@ export default class CurrentTripsDisplay extends Component {
                       <Button color="blue" size="large" className='checkInBtn' onClick={() => this.removeWaypoint(point.id)}>
                         <Button.Content>Check In</Button.Content>
                       </Button>
-                      
+
                     }
 
                     <Button color="red" size="large" className="removeBtn">
