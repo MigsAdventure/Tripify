@@ -124,7 +124,7 @@ export default class CreateTrip extends Component {
     const { waypoints, setWaypoints, createNewTrip, updateSavedTrip, setTripInfo } = this.props;
 
   // if (type === 'save')
-    if (waypoints.length && title.length && tags.length && description.length && picture.length) {
+    if (waypoints.length && title.length && tags.length && description.length) {
       if (type === 'save') {
         createNewTrip({
           title,

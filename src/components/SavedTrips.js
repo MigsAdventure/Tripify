@@ -4,13 +4,13 @@ import { Grid, Image, Segment, Loader, Accordion, Button } from 'semantic-ui-rea
 
 
 export default function SavedTrips(props) {
-  let { savedTrips, modifyTrip, startTrip } = props;
+  let { savedTrips, modifyTrip, startTrip, removeTrip } = props;
   return (
     <div>
       <h2>SavedTrips Page</h2>
       {
         // currPage === 'Saved' && tripsData !== undefined &&
-        Object.keys(savedTrips).map((item) =>
+        Object.keys(savedTrips || {}).map((item) =>
           {
             console.log('TEST:', savedTrips[item].title);
             return (
@@ -31,7 +31,7 @@ export default function SavedTrips(props) {
                       <Button.Content>Modify</Button.Content>
                     </Button>
 
-                    <Button color="red" size="huge" className="removeBtn">
+                    <Button onClick={() => removeTrip('saved', item)} color="red" size="huge" className="removeBtn">
                       <Button.Content>Remove</Button.Content>
                     </Button>
 

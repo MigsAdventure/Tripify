@@ -9,17 +9,19 @@ import SavedTrips from './SavedTrips';
 import PreviousTrips from './PreviousTrips';
 import * as WaypointActions from '../actions/WaypointActions';
 import * as TripInfoActions from '../actions/TripInfoActions';
+import * as FirebaseActions from '../actions/FirebaseActions';
 
 @connect(state => ({
-
   tripsData: state.user,
-
 }), dispatch => ({
   setWaypoints(waypoints) {
     dispatch(WaypointActions.setWaypoints(waypoints));
   },
   setTripInfo(tripInfo) {
     dispatch(TripInfoActions.setTripInfo(tripInfo));
+  },
+  removeTrip(type, id) {
+    dispatch(FirebaseActions.removeTrip(type, id));
   },
 }))
 
@@ -65,7 +67,7 @@ export default class UserTrips extends Component {
   }
 
   render() {
-    let { currPage, tripsData } = this.props;
+    let { currPage, tripsData, removeTrip } = this.props;
     console.log('this:', this);
     let loader = (<div className="topHalfLoader tripLoader">
       <Loader active size="huge" inline="centered" />
@@ -82,7 +84,13 @@ export default class UserTrips extends Component {
 
         {currPage === 'Previous' && <PreviousTrips previousTrips={tripsData.previous} />}
 
-        {currPage === 'Saved' && <SavedTrips startTrip={this.startTripDefault} modifyTrip={this.modifyTrip} savedTrips={tripsData.saved} />}
+        {currPage === 'Saved' &&
+          <SavedTrips
+            startTrip={this.startTripDefault}
+            modifyTrip={this.modifyTrip}
+            removeTrip={removeTrip}
+            savedTrips={tripsData.saved}
+          />}
 
       </div>
     ); // end of return
