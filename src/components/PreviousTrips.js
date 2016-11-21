@@ -31,7 +31,7 @@ export default function PreviousTrips(props) {
                       <Button.Content>Modify</Button.Content>
                     </Button>
 
-                    <Button onClick={() => removeTrip('saved', item)} color="red" size="huge" className="removeBtn">
+                    <Button onClick={() => removeTrip('previous', item)} color="red" size="huge" className="removeBtn">
                       <Button.Content>Remove</Button.Content>
                     </Button>
 
