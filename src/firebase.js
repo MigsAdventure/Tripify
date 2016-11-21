@@ -10,13 +10,13 @@ import firebase from 'firebase';
 // };
 
 // // Z's api keys
-// const config = {
-//   apiKey: 'AIzaSyAiPaxx9QsCHft6xnKSfPOtKgEMXgrgIY0',
-//   authDomain: 'test-app-7a5c0.firebaseapp.com',
-//   databaseURL: 'https://test-app-7a5c0.firebaseio.com',
-//   storageBucket: 'test-app-7a5c0.appspot.com',
-//   messagingSenderId: '803419720138',
-// };
+const config = {
+  apiKey: 'AIzaSyAiPaxx9QsCHft6xnKSfPOtKgEMXgrgIY0',
+  authDomain: 'test-app-7a5c0.firebaseapp.com',
+  databaseURL: 'https://test-app-7a5c0.firebaseio.com',
+  storageBucket: 'test-app-7a5c0.appspot.com',
+  messagingSenderId: '803419720138',
+};
 
 // Dustin's api keys
 // const config = {
@@ -28,13 +28,13 @@ import firebase from 'firebase';
 // };
 
 // Holly's api keys
-const config = {
-  apiKey: 'AIzaSyCq5Z3C4LQ9RBKeTRVHxMojiVVtaLr0vhs',
-  authDomain: 'moon-6244f.firebaseapp.com',
-  databaseURL: 'https://moon-6244f.firebaseio.com',
-  storageBucket: 'moon-6244f.appspot.com',
-  messagingSenderId: '684869793339',
-};
+// const config = {
+//   apiKey: 'AIzaSyCq5Z3C4LQ9RBKeTRVHxMojiVVtaLr0vhs',
+//   authDomain: 'moon-6244f.firebaseapp.com',
+//   databaseURL: 'https://moon-6244f.firebaseio.com',
+//   storageBucket: 'moon-6244f.appspot.com',
+//   messagingSenderId: '684869793339',
+// };
 
 export const firebaseApp = firebase.initializeApp(config);
 export const firebaseDb = firebaseApp.database();
