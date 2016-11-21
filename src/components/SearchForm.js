@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { fetchSearch } from '../actions/ApiActions';
+import { geofioreSearchResults } from '../actions/Geofire';
 
 @connect(null, dispatch => ({
-  fetchSearchResults(searchPackage) {
-    dispatch(fetchSearch(searchPackage));
+  geofioreSearchResults(searchPackage) {
+    dispatch(geofioreSearchResults(searchPackage));
   },
 }))
 
@@ -17,7 +17,7 @@ export default class SearchForm extends Component {
       trip: this.tripsInput.value,
       location: this.locationInput.value,
     };
-    this.props.fetchSearchResults(searchPackage);
+    this.props.geofioreSearchResults(searchPackage);
     browserHistory.push('/search-results');
   }
 

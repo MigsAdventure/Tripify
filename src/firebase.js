@@ -18,7 +18,6 @@ import firebase from 'firebase';
 //   storageBucket: 'test-app-7a5c0.appspot.com',
 //   messagingSenderId: '803419720138',
 // };
-
 // const config = {
 //   apiKey: 'AIzaSyCaWpX2l-1xUmYGXzWPTyYONs08LiwHLao',
 //   authDomain: 'tripify-a5149.firebaseapp.com',
@@ -53,6 +52,7 @@ const config = {
 //   storageBucket: "test123-1e63d.appspot.com",
 //   messagingSenderId: "315763032189"
 // };
+
 
 export const firebaseApp = firebase.initializeApp(config);
 export const firebaseDb = firebaseApp.database();
