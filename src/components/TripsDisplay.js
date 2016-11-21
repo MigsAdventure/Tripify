@@ -12,12 +12,12 @@ export default class TripsDisplay extends Component {
 
   render () {
     const results = this.props.results.length ? this.props.results : [];
+    const { startTrip, modifyTrip } = this.props;
     console.log('results:', results)
     return (
       <div className='tripsDisplayContainer'>
         {
-          results.map(trip => {
-
+          results.map((trip, i) => {
             return (
               // image needs another call from the backend
                 <div key={uuid()} className='tripsDisplayInnerContainer' >
@@ -41,13 +41,12 @@ export default class TripsDisplay extends Component {
 
                   </div>
 
-
                   <div className="btnResultContainer">
-                    <Button color="green" size="huge" className="startBtn">
+                    <Button onClick={() => startTrip(i)} color="green" size="huge" className="startBtn">
                       <Button.Content>Start</Button.Content>
                     </Button>
 
-                    <Button color="blue" size="huge" className="modifyBtn">
+                    <Button onClick={() => modifyTrip(i)} color="blue" size="huge" className="modifyBtn">
                       <Button.Content>Modify</Button.Content>
                     </Button>
 

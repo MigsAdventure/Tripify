@@ -1,5 +1,3 @@
-
-
 export default function results(state = [], action) {
   switch (action.type) {
     // FUlFILLED at the end if using redux-promise-middleware
@@ -7,6 +5,8 @@ export default function results(state = [], action) {
       return action.payload.data;
     case 'RECEIVE_TRIPS_IN_SAVED':
       return action.payload;
+    case 'CLEAR_RESULTS':
+      return [];
     default:
       return state;
   }

@@ -6,3 +6,9 @@ export function fetchSearch(searchPackage) {
     payload: axios.get(`/api/places?term=${searchPackage.trip}%20${searchPackage.location}`),
   };
 }
+
+export function clearResults() {
+  return {
+    type: 'CLEAR_RESULTS',
+  };
+}
