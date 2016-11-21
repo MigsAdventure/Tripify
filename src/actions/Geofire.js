@@ -35,19 +35,21 @@ export function geofioreSearchResults(searchPackage) {
           const trips = [];
           for (const user of Object.keys(usersObj)) {
             const { saved } = usersObj[user];
-            for (const tripInfo of Object.keys(saved)) {
-              const { description, locEnd, locStart, tags, title } = saved[tripInfo];
-              const endGeometry = locEnd.geometry;
-              const endLocation = endGeometry.location;
-              const startGeometry = locStart.geometry;
-              const startLocation = startGeometry.location;
-              if ((((endLocation.lat <= rightLat) && (endLocation.lat >= leftLat)
-              && (endLocation.lng <= bottomLng) && (endLocation.lng >= topLng))
-              || ((startLocation.lat <= rightLat) && (startLocation.lat >= leftLat)
-              && (startLocation.lng <= bottomLng) && (startLocation.lng >= topLng)))
-              && ((tags.includes(keyWord)) || (title.includes(keyWord))
-              || (description.includes(keyWord)))) {
-                trips.push(saved[tripInfo]);
+            if (saved !== false) {
+              for (const tripInfo of Object.keys(saved)) {
+                const { description, locEnd, locStart, tags, title } = saved[tripInfo];
+                const endGeometry = locEnd.geometry;
+                const endLocation = endGeometry.location;
+                const startGeometry = locStart.geometry;
+                const startLocation = startGeometry.location;
+                if ((((endLocation.lat <= rightLat) && (endLocation.lat >= leftLat)
+                && (endLocation.lng <= bottomLng) && (endLocation.lng >= topLng))
+                || ((startLocation.lat <= rightLat) && (startLocation.lat >= leftLat)
+                && (startLocation.lng <= bottomLng) && (startLocation.lng >= topLng)))
+                && ((tags.includes(keyWord)) || (title.includes(keyWord))
+                || (description.includes(keyWord)))) {
+                  trips.push(saved[tripInfo]);
+                }
               }
             }
           }
