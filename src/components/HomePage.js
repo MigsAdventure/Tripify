@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchForm from './SearchForm';
 import TripsDisplay from './TripsDisplay';
+import RecentTrips from './RecentTrips';
 
 export default function HomePage() {
   // this is dummy data for now
@@ -37,6 +38,7 @@ export default function HomePage() {
         <div className="homeCard">
           <label>Must See Trips</label>
           {/* <TripsDisplay results={trips1} key="1" /> */}
+          {/* <RecentTrips /> */}
         </div>
         <div className="homeCard">
           <label>Beach Trips</label>
