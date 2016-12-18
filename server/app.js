@@ -1,5 +1,6 @@
 // CONSTANTS
 const PORT = process.env.PORT || 8000;
+const MONGO_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/tripifydb';
 
 // REQUIRES
 const bodyParser = require('body-parser');
@@ -11,6 +12,11 @@ require('dotenv').config({ silent: true });
 // INITIALIZE SERVER
 const app = express();
 const server = require('http').createServer(app);
+
+require('mongoose').connect(MONGO_URI, (err) => {
+  if (err) throw err;
+  console.log(`MongoDB connected to ${MONGO_URI}`);
+});
 
 server.listen(PORT, (err) => {
   console.log(err || `Express listening on port ${PORT}`);

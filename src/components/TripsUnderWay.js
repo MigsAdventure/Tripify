@@ -93,6 +93,7 @@ export default class TripsUnderWay extends Component {
           }
         </div>
         <InfoDrawer userdata={waypoints} title={'WayPoints'} />
+
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UploadImage from './UploadImage';
 
 /*
 HOLLEEEEEHHHHHH Im passing this job on to you.
@@ -31,10 +32,10 @@ export default class GalleryModal extends Component {
             <div className='fourthLevelModal' >
               <h2>Upload Image</h2>
               {
-                // When the user clicks the add button the user should be able to
+                // When the user clicks the upload image button the user should be able to
                 // UPLOAD a file from THEIR COMPUTER.
               }
-              <button>add</button>
+              <UploadImage />
               <h2>Gallery</h2>
               {
                 // Don't worry about styling for now. Map through the array of images
