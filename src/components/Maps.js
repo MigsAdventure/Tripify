@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 
 export default class Maps extends Component {
-  componentDidMount() {
-    this.initMap();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    this.initMap();
-  }
-
-  initMap() {
-    const { mapRef } = this.refs;
-    const { google, destination, waypoints } = this.props;
+  constructor(props) {
+    super(props);
+    const { google } = props;
 
     const directionsService = new google.maps.DirectionsService();
     const directionsDisplay = new google.maps.DirectionsRenderer();
+
+    this.state = {
+      directionsDisplay,
+      directionsService,
+    };
+  }
+
+  componentDidMount = () => {
+    const { mapRef } = this.refs;
+    const { google } = this.props;
+    const { directionsDisplay } = this.state;
 
     const map = new google.maps.Map(mapRef, {
       zoom: 4,
@@ -22,6 +25,16 @@ export default class Maps extends Component {
     });
 
     directionsDisplay.setMap(map);
+    this.updateWaypoints();
+  }
+
+  componentDidUpdate() {
+    this.updateWaypoints();
+  }
+
+  updateWaypoints = () => {
+    const { destination, waypoints } = this.props;
+    const { directionsDisplay, directionsService } = this.state;
 
     let pos;
     if (navigator.geolocation) {
@@ -48,7 +61,7 @@ export default class Maps extends Component {
   render() {
     return (
       <div className="col-xs-12 mapContainer">
-        <div  ref="mapRef" className="mapRef"></div>
+        <div ref="mapRef" className="mapRef"></div>
       </div>
     );
   }
