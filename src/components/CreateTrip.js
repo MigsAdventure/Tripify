@@ -191,7 +191,6 @@ export default class CreateTrip extends Component {
 
     return (
       <div>
-
         {search ?
           <div className="createTripLowHalf">
             <form key={uuid()} onSubmit={this.submitForm} className="wayPointForm ">
@@ -229,14 +228,13 @@ export default class CreateTrip extends Component {
             <button onClick={() => this.saveTrip('save')} className="btn btn-default">Save as New</button>
             {id ? <button onClick={() => this.saveTrip('update')} className="btn btn-default">Save Changes Only</button> : null}
             <button onClick={() => this.saveTrip('start')} className="btn btn-default">Start Trip</button>
+            <button data-toggle="modal" data-target="#galleryModal">Upload Image</button>
 
             <h3>Trip Info</h3>
             <div className="createInputWrapper">
               <input id="title" type="text" onChange={this.inputChange} value={title} placeholder="enter title" required />
 
               <input id="tags" type="text" onChange={this.inputChange} value={tags} placeholder="enter search tags" required />
-
-              <input id="picture" type="text" onChange={this.inputChange} value={picture} placeholder="enter picture url" required />
 
               <textarea id="description" onKeyUp={this.autoGrow} value={description} onChange={this.inputChange} type="text" placeholder="enter description" required />
             </div>

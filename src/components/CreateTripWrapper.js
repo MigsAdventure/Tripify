@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import uuid from 'uuid';
 import InfoDrawer from './InfoDrawer';
 import Maps from './Maps';
+import GalleryModal from './GalleryModal';
 
 
 @connect(state => ({
@@ -11,7 +12,6 @@ import Maps from './Maps';
 
 export default class CreateTripWrapper extends Component {
   render() {
-    // console.log('this: ', this);
     const { waypoints } = this.props;
 
     let displayDestination;
@@ -35,12 +35,9 @@ export default class CreateTripWrapper extends Component {
       }
     }
 
-    // console.log('displayWaypoints: ', displayWaypoints);
-    // console.log('displayDestination: ', displayDestination);
-    // console.log('WAYPOINTS: ', waypoints);
-
     return (
       <div className="createTripWrapper">
+        <GalleryModal />
         <Maps className="mapsComponent"
           google={window.google}
           destination={displayDestination}
